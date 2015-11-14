@@ -26,7 +26,6 @@
 
 				F.vars[arrayObjKey][val[0]] = val[1];
 			} else {
-				console.log(F);
 				F.vars[key] = val;
 			}
 		});
