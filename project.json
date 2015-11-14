@@ -2,8 +2,6 @@
 	"root": "public_html",
 	"assets": "assets",
 	"source": "assetsSource",
-	"assetsPath": "public_html/assets",
-	"sourcePath": "public_html/assetsSource",
 	"proxy": "https://fab.dev",
 	"lessCompress": true,
 	"lessImports": {
