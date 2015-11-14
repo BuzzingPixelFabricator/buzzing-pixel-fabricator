@@ -63,8 +63,8 @@ module.exports = function(grunt) {
 		},
 		jshint: {
 			files: [
-				'source/js/*.js',
-				'source/js/build/*.js'
+				'public_html/assetsSource/js/*.js',
+				'public_html/assetsSource/js/build/*.js'
 			],
 			options: {
 				jshintrc: true
@@ -72,8 +72,8 @@ module.exports = function(grunt) {
 		},
 		jscs: {
 			src: [
-				'source/js/*.js',
-				'source/js/build/*.js'
+				'public_html/assetsSource/js/*.js',
+				'public_html/assetsSource/js/build/*.js'
 			],
 			options: {
 				config: '.jscs.json'
