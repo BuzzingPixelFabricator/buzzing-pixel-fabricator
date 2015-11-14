@@ -1,0 +1,76 @@
+(function(F) {
+	'use strict';
+
+	// Define FAB vars functions
+	F.setVars = function() {
+		// Set data-set variables
+		$('[data-set]').each(function() {
+			var $el = $(this),
+				key = $el.data('set'),
+				val = $el.data('value'),
+				arrayObjTest = key.slice(-2),
+				arrayObjKey = key.slice(0, -2);
+
+			if (arrayObjTest === '[]') {
+				if (! F.vars[arrayObjKey]) {
+					F.vars[arrayObjKey] = [];
+				}
+
+				F.vars[arrayObjKey].push(val);
+			} else if (arrayObjTest === '{}') {
+				val = val.split(':');
+
+				if (! F.vars[arrayObjKey]) {
+					F.vars[arrayObjKey] = {};
+				}
+
+				F.vars[arrayObjKey][val[0]] = val[1];
+			} else {
+				console.log(F);
+				F.vars[key] = val;
+			}
+		});
+
+		// Set lang variables
+		$('[data-lang]').each(function() {
+			var $el = $(this);
+
+			F.lang[$el.data('lang')] = $el.data('value');
+		});
+
+		/**
+		 * Method for getting F vars
+		 *
+		 * @param {string} getVar - Name of variable to get
+		 * @param {*} [defaultVal] - Default value to return if no var
+		 * @return {*} - Variable value, default value, or null
+		 */
+		F.$get = function(getVar, defaultVal) {
+			if (
+				F.vars[getVar] !== null &&
+				F.vars[getVar] !== undefined
+			) {
+				return F.vars[getVar];
+			}
+
+			return defaultVal || null;
+		};
+
+		// Set run variables from DOM
+		$('[data-exec]').each(function() {
+			var name = $(this).data('exec');
+
+			if (name && F.exec.indexOf(name) === -1) {
+				F.exec.push(name);
+			}
+		});
+
+		// Set ready state
+		F.ready = true;
+	};
+
+	// Run setVars when DOM ready
+	$(function() {
+		F.setVars();
+	});
+})(window.FAB);
