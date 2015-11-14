@@ -1,17 +1,22 @@
 module.exports = function(grunt) {
-	grunt.initConfig({
-		browserSync: {
+	var projectFile = grunt.file.readJSON('project.json'),
+		root = projectFile.root,
+		assetsPath = root + '/' + projectFile.assets,
+		assetsSource = root + '/' + projectFile.source,
+		conf = {
+			root: root,
+			assetsPath: assetsPath,
+			assetsSource: assetsSource,
 			bsFiles: {
 				src: [
-					'public_html/assets/css/style.min.css',
-					'public_html/assets/js/lib/*.js',
-					'public_html/assets/js/*.js',
-					'system/user/templates/default_site/*/*.*'
+					assetsPath + '/css/style.min.css',
+					assetsPath + '/js/lib/*.js',
+					assetsPath + '/js/*.js'
 				]
 			},
-			options: {
+			bsOptions: {
 				watchTask: true,
-				proxy: 'https://fab.dev',
+				proxy: projectFile.proxy,
 				ghostMode: {
 					clicks: false,
 					forms: false,
@@ -20,30 +25,129 @@ module.exports = function(grunt) {
 				},
 				open: 'external',
 				notify: false
+			},
+			lessCompress: projectFile.lessCompress,
+			lessImports: {
+				reference: [
+					'base/variables.less',
+					'config/variables.less',
+					'base/mixins.less',
+					'config/mixins.less'
+				]
+			},
+			lessFiles: {},
+			jsFiles: {}
+		};
+
+	// Configure proxy
+	if (projectFile.proxy === false) {
+		conf.bsOptions.open = false;
+	}
+
+	// Configure Less imports
+	if (projectFile.lessImports.reference.length) {
+		conf.lessImports.reference = conf.lessImports.reference.concat(
+			projectFile.lessImports.reference
+		);
+	}
+
+	if (projectFile.lessImports.inline.length) {
+		conf.lessImports.inline = conf.lessImports.inline.concat(
+			projectFile.lessImports.inline
+		);
+	}
+
+	if (projectFile.lessImports.less.length) {
+		conf.lessImports.less = conf.lessImports.less.concat(
+			projectFile.lessImports.less
+		);
+	}
+
+	if (projectFile.lessImports.css.length > 0) {
+		conf.lessImports.css = conf.lessImports.css.concat(
+			projectFile.lessImports.css
+		);
+	}
+
+	// Configure less files
+	conf.lessFiles[assetsPath + '/css/style.min.css'] = [
+		assetsSource + '/css/build/*.less',
+		assetsSource + '/css/build/*.css',
+		assetsSource + '/css/fab.less'
+	];
+
+	if (projectFile.lessBuild.length) {
+		projectFile.lessBuild.forEach(function(i) {
+			conf.lessFiles[assetsPath + '/css/style.min.css'].push(
+				assetsSource + '/' + i
+			);
+		});
+	}
+
+	if (Object.keys(projectFile.lessFiles).length) {
+		for (var key in projectFile.lessFiles) {
+			conf.lessFiles[assetsPath + '/' + key] =
+				assetsSource + '/' + projectFile.lessFiles[key];
+		}
+	}
+
+	// Configure JS files
+	conf.jsFiles[assetsPath + '/js/script.min.js'] = [
+		assetsSource + '/js/fab.js',
+		assetsSource + '/js/base/*.js',
+		assetsSource + '/js/controller.js',
+		assetsSource + '/js/build/*.js'
+	];
+
+	if (projectFile.jsBuild.length) {
+		projectFile.jsBuild.forEach(function(i) {
+			conf.jsFiles[assetsPath + '/js/script.min.js'].push(
+				assetsSource + '/' + i
+			);
+		});
+	}
+
+	conf.jsFiles[assetsPath + '/js/script.min.js'].push(
+		assetsSource + '/js/ready.js'
+	);
+
+	if (Object.keys(projectFile.jsFiles).length) {
+		for (var key in projectFile.jsFiles) {
+			conf.jsFiles[assetsPath + '/' + key] =
+				assetsSource + '/' + projectFile.jsFiles[key];
+		}
+	}
+
+	grunt.initConfig({
+		conf: conf,
+		projectFile: projectFile,
+		browserSync: {
+			bsFiles: conf.bsFiles,
+			options: conf.bsOptions
+		},
+		notify: {
+			less: {
+				options: {
+					title: "CSS",
+					message: "CSS compiled successfully"
+				}
+			},
+			uglify: {
+				options: {
+					title: "Javascript",
+					message: "Javascript compiled successfully"
+				}
 			}
 		},
 		less: {
 			development: {
 				options: {
-					compress: true,
-					yuicompress: true,
+					compress: conf.lessCompress,
+					yuicompress: conf.lessCompress,
 					optimization: 2,
-					imports: {
-						reference: [
-							'base/variables.less',
-							'config/variables.less',
-							'base/mixins.less',
-							'config/mixins.less'
-						]
-					}
+					imports: conf.lessImports
 				},
-				files: {
-					'public_html/assets/css/style.min.css': [
-						'public_html/assetsSource/css/build/*.less',
-						'public_html/assetsSource/css/build/*.css',
-						'public_html/assetsSource/css/fab.less'
-					]
-				}
+				files: conf.lessFiles
 			}
 		},
 		uglify: {
@@ -51,20 +155,13 @@ module.exports = function(grunt) {
 				options: {
 					sourceMap: true
 				},
-				files: {
-					'public_html/assets/js/script.min.js': [
-						'public_html/assetsSource/js/fab.js',
-						'public_html/assetsSource/js/controller.js',
-						'public_html/assetsSource/js/build/*.js',
-						'public_html/assetsSource/js/ready.js'
-					]
-				}
+				files: conf.jsFiles
 			}
 		},
 		jshint: {
 			files: [
-				'public_html/assetsSource/js/*.js',
-				'public_html/assetsSource/js/build/*.js'
+				'<%= conf.assetsSource %>/js/*.js',
+				'<%= conf.assetsSource %>/js/build/*.js'
 			],
 			options: {
 				jshintrc: true
@@ -72,8 +169,8 @@ module.exports = function(grunt) {
 		},
 		jscs: {
 			src: [
-				'public_html/assetsSource/js/*.js',
-				'public_html/assetsSource/js/build/*.js'
+				'<%= conf.assetsSource %>/js/*.js',
+				'<%= conf.assetsSource %>/js/build/*.js'
 			],
 			options: {
 				config: '.jscs.json'
@@ -82,12 +179,13 @@ module.exports = function(grunt) {
 		watch: {
 			styles: {
 				files: [
-					'public_html/assetsSource/css/*.less',
-					'public_html/assetsSource/css/*/*.less',
-					'public_html/assetsSource/css/*/*.css'
+					'<%= conf.assetsSource %>/css/*.less',
+					'<%= conf.assetsSource %>/css/*/*.less',
+					'<%= conf.assetsSource %>/css/*/*.css'
 				],
 				tasks: [
-					'less'
+					'less',
+					'notify:less'
 				],
 				options: {
 					spawn: false
@@ -95,11 +193,12 @@ module.exports = function(grunt) {
 			},
 			javascript: {
 				files: [
-					'public_html/assetsSource/js/*.js',
-					'public_html/assetsSource/js/*/*.js'
+					'<%= conf.assetsSource %>/js/*.js',
+					'<%= conf.assetsSource %>/js/*/*.js'
 				],
 				tasks: [
-					'uglify'
+					'uglify',
+					'notify:uglify'
 				],
 				options: {
 					spawn: false
@@ -135,11 +234,14 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-jscs');
+	grunt.loadNpmTasks('grunt-notify');
 	grunt.loadNpmTasks('grunt-browser-sync');
 
 	grunt.registerTask('default', [
 		'less',
 		'uglify',
+		'notify:less',
+		'notify:uglify',
 		'browserSync',
 		'watch'
 	]);

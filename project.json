@@ -1,0 +1,28 @@
+{
+	"root": "public_html",
+	"assets": "assets",
+	"source": "assetsSource",
+	"assetsPath": "public_html/assets",
+	"sourcePath": "public_html/assetsSource",
+	"proxy": "https://fab.dev",
+	"lessCompress": true,
+	"lessImports": {
+		"reference": [
+			"test.less"
+		],
+		"inline": [
+		],
+		"less": [
+		],
+		"css": [
+		]
+	},
+	"lessBuild": [
+	],
+	"lessFiles": {
+	},
+	"jsBuild": [
+	],
+	"jsFiles": {
+	}
+}
