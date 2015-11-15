@@ -236,3 +236,43 @@ A callback function if loading fails.
 Type: `function`
 
 A callback function when loading is finished.
+
+## FAB screen size (`FAB.screen.size()` and `FAB.screen.map()`)
+
+Fabricator has 5 screen sizes. 1 corresponds to the smallest size (mobile portrait) and 5 corresponds to the largest size (desktop large).
+
+### `FAB.screen.size()`
+
+Call `FAB.screen.size()` any time to get the current screen size.
+
+### `FAB.screen.map()`
+
+This is where the real power comes in at. `map()` takes an array of objects as it's argument. You can pass in as many or as few as you want, and you can call it any time to map things up.
+
+Example:
+
+```
+FAB.screen.map([
+	{
+		min: 2,
+		max: 4,
+		callback: function() {
+			// Do stuff here when breakpoint reaches two, or drops
+			// back down to 4
+		}
+	},
+	{
+		max: 2,
+		callback: function() {
+			// Do stuff here when breakpoint drops to 2 or below
+		}
+	},
+	{
+		size: 3,
+		callback: function() {
+			// Do stuff here when the breakpoint size is exactly 3
+			// This will only run if there's no min and max
+		}
+	}
+]);
+```
