@@ -3,9 +3,9 @@
 \*------------------------------------*/
 
 @minWidth: false;  // min container width, false to disable
-@maxWidth: 1280px; // max container width, false to disable
+@maxWidth: false; // max container width, false to disable
 
-@bumperPadding: 6%;  // bumper padding on containers, false to disable
+@bumperPadding: false;  // bumper padding on containers, false to disable
 @padContainer: true; // enable bumperPadding on containers
 
 @gridMargin: 5%; // default margin for spaced columns
@@ -50,19 +50,13 @@
 
 // Default units
 
-@defaultUnit: rem; // unitless value default
+@defaultUnit: px; // unitless value default
 @defaultFontSizeUnit: @defaultUnit;
 @defaultLineHeightUnit: em;
 
-// Root sizing
-
-@rootFontSize: 62.5%; // root font size (62.5% = 10px, 100% = 16px)
-
-// All rem-based units are relative to the root size above
-
 @baseColor: @darkestGray;
 @baseFont: Arial, Helvetica, sans-serif;
-@baseFontSize: 1.6;
+@baseFontSize: 16px;
 @baseFontWeight: normal;
 @baseLineHeight: 1em;
 
@@ -167,7 +161,7 @@
 @listMarginLeft: false; // false to disable
 
 @listBulletStyle: disc;      // disc, circle, square, etc
-@listBulletPosition: inside; // inside or outside
+@listBulletPosition: outside; // inside or outside
 
 @nestedListMarginLeft: 2;
 

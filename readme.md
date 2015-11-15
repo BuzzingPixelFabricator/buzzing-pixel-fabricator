@@ -54,13 +54,6 @@ Type: `bool`
 
 True to compress and minify CSS, false for un-minified CSS output.
 
-### `lessImports`
-
-Type: `object`  
-Note: Items are relative to the `source` directory
-
-This object contains four arrays: `reference`, `inline`, `less`, `css`. The CSS array is an array of CSS files to import, the rest are Less files to import. Their names should be self explanatory. The are all relative to the `source` directory.
-
 ### `lessBuild`
 
 Type: `array`  

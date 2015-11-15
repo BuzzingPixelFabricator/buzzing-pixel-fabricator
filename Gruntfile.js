@@ -27,14 +27,6 @@ module.exports = function(grunt) {
 				notify: false
 			},
 			lessCompress: projectFile.lessCompress,
-			lessImports: {
-				reference: [
-					'base/variables.less',
-					'config/variables.less',
-					'base/mixins.less',
-					'config/mixins.less'
-				]
-			},
 			lessFiles: {},
 			jsFiles: {}
 		};
@@ -42,31 +34,6 @@ module.exports = function(grunt) {
 	// Configure proxy
 	if (projectFile.proxy === false) {
 		conf.bsOptions.open = false;
-	}
-
-	// Configure Less imports
-	if (projectFile.lessImports.reference.length) {
-		conf.lessImports.reference = conf.lessImports.reference.concat(
-			projectFile.lessImports.reference
-		);
-	}
-
-	if (projectFile.lessImports.inline.length) {
-		conf.lessImports.inline = conf.lessImports.inline.concat(
-			projectFile.lessImports.inline
-		);
-	}
-
-	if (projectFile.lessImports.less.length) {
-		conf.lessImports.less = conf.lessImports.less.concat(
-			projectFile.lessImports.less
-		);
-	}
-
-	if (projectFile.lessImports.css.length > 0) {
-		conf.lessImports.css = conf.lessImports.css.concat(
-			projectFile.lessImports.css
-		);
 	}
 
 	// Configure less files
@@ -144,8 +111,7 @@ module.exports = function(grunt) {
 				options: {
 					compress: conf.lessCompress,
 					yuicompress: conf.lessCompress,
-					optimization: 2,
-					imports: conf.lessImports
+					optimization: 2
 				},
 				files: conf.lessFiles
 			}
@@ -229,7 +195,7 @@ module.exports = function(grunt) {
 		}
 	});
 
-	grunt.loadNpmTasks('assemble-less');
+	grunt.loadNpmTasks('grunt-contrib-less');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-jshint');

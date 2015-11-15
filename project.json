@@ -4,16 +4,6 @@
 	"source": "assetsSource",
 	"proxy": "https://fab.dev",
 	"lessCompress": true,
-	"lessImports": {
-		"reference": [
-		],
-		"inline": [
-		],
-		"less": [
-		],
-		"css": [
-		]
-	},
 	"lessBuild": [
 	],
 	"lessFiles": {
