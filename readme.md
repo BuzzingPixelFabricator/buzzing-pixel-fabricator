@@ -143,7 +143,7 @@ FAB uses a global storage object and there are methods for getting and settings 
 
 ### `FAB.$set('myVar', 'myVal')`
 
-`FAB.$set90` takes two arguments:
+`FAB.$set()` takes two arguments:
 
 1. `string` Variable name: The name of the variable to set. If this name exists in the global storage, the value will be overridden.
 2. `any` Variable value: This can be anything, object, array, string, function, whatever. You can store anything here.
