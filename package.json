@@ -1,7 +1,17 @@
 {
-	"name" : "fabricator",
-	"version": "1.0.0",
+	"name" : "buzzing-pixel-fabricator",
+	"version": "0.1.0",
 	"Description": "Fabricator Build Process",
+	"homepage": "https://github.com/tjdraper/buzzing-pixel-fabricator",
+	"bugs": "https://github.com/tjdraper/buzzing-pixel-fabricator/issues",
+	"license": "MIT",
+	"author": "TJ Draper",
+	"contributors": [
+		{
+			"name": "TJ Draper",
+			"url": "https://buzzingpixel.com"
+		}
+	],
 	"devDependencies": {
 		"grunt": "^0.4.5",
 		"grunt-browser-sync": ">=2.1.3",

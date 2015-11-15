@@ -1,4 +1,4 @@
-# Fabricator
+# Fabricator 0.1.0
 
 You probably won't find this useful but you are welcome to use it. This is my build process and helper functions for building websites. Below you will find some documentation about how it works.
 
@@ -56,14 +56,14 @@ True to compress and minify CSS, false for un-minified CSS output.
 
 ### `lessBuild`
 
-Type: `array`  
+Type: `array`
 Note: Items are relative to the `source` directory
 
 All files listed in this array will be compiled into the primary css output file.
 
 ### `lessFiles`
 
-Type: `object`  
+Type: `object`
 Note: Keys are relative to the `assets ` directory and values are relative to the `source` directory
 
 The key of items in this object is the output file name and location, the value can either be a string of a file to compile, or an array of files to compile.
@@ -77,7 +77,7 @@ All files listed in this array will be compiled into the primary JS min file.
 
 ### `jsFiles`
 
-Type: `object`  
+Type: `object`
 Note: Keys are relative to the `assets ` directory and values are relative to the `source` directory
 
 ## Mixins
