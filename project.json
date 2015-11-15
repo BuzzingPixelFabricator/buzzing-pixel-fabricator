@@ -6,7 +6,6 @@
 	"lessCompress": true,
 	"lessImports": {
 		"reference": [
-			"test.less"
 		],
 		"inline": [
 		],
