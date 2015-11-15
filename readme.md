@@ -130,16 +130,23 @@ This will call the init function of your specified controller when the pageType 
 })(window.FAB);
 ```
 
-## Setting and getting FAB vars (`FAB.$get()` and `$FAB.$set()`)
+## Setting and getting FAB vars
 
 FAB uses a global storage object and there are methods for getting and settings them:
 
 ### `FAB.$set('myVar', 'myVal')`
 
-`FAB.$set()` takes two arguments:
+Arguments:
 
 1. `string` Variable name: The name of the variable to set. If this name exists in the global storage, the value will be overridden.
 2. `any` Variable value: This can be anything, object, array, string, function, whatever. You can store anything here.
+
+### `FAB.$get('myVar')`
+
+Arguments:
+
+1. `string` Variable name: The name of the variable to get. If the variable does not exist in global storage, `null` will be returned unless you set a fallback value.
+2. `any` Fallback value. The value to fall back to if the variable does not exist in global storage.
 
 ## FAB function sets (`FAB.fn.make()`)
 
@@ -237,7 +244,7 @@ Type: `function`
 
 A callback function when loading is finished.
 
-## FAB screen size (`FAB.screen.size()` and `FAB.screen.map()`)
+## FAB screen size
 
 Fabricator has 5 screen sizes. 1 corresponds to the smallest size (mobile portrait) and 5 corresponds to the largest size (desktop large).
 
