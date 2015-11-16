@@ -2,11 +2,11 @@
 	'use strict';
 
 	// Run F functions
-	F.run = function() {
+	var runFAB = function() {
 		// Make sure everything is ready
 		if (! F.ready) {
 			setTimeout(function() {
-				F.run();
+				runFAB();
 			}, 100);
 
 			return;
@@ -37,6 +37,6 @@
 
 	// Run initialization on DOM ready state
 	$(function() {
-		F.run();
+		runFAB();
 	});
 })(window.FAB);

@@ -2,7 +2,7 @@
 	'use strict';
 
 	// Define FAB vars functions
-	F.setVars = function() {
+	var runVars = function() {
 		// Set data-set variables
 		$('[data-set]').each(function() {
 			var $el = $(this),
@@ -73,6 +73,6 @@
 
 	// Run setVars when DOM ready
 	$(function() {
-		F.setVars();
+		runVars();
 	});
 })(window.FAB);
