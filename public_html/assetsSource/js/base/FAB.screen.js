@@ -1,41 +1,40 @@
 (function(F, $html, $win) {
 	'use strict';
 
-	var allRules = [],
-		currentSize,
-		dir;
-
 	// Create a function for running a rule through
 	var runRule = function(rule, currentSize, newSize, dir) {
-		if (typeof rule.callback !== 'function') {
-			return;
-		}
-
-		// Run min rules
-		if (rule.min && newSize >= rule.min && ! rule.hasRun && dir === 'up' && (! rule.max || newSize <= rule.max)) {
-			rule.callback();
-
-			rule.hasRun = true;
-		} else if (rule.min && newSize < rule.min) {
-			rule.hasRun = false;
-		}
-
-		// Run max rules
-		if (rule.max && newSize <= rule.max && ! rule.hasRun && dir === 'down' && (! rule.min || newSize >= rule.min)) {
-			rule.callback();
-
-			rule.hasRun = true;
-		} else if (rule.max && newSize > rule.max) {
-			rule.hasRun = false;
-		}
-
-		// Run size rule
-		if (! rule.min && ! rule.max && rule.size) {
-			if (newSize === rule.size) {
-				rule.callback();
+			if (typeof rule.callback !== 'function') {
+				return;
 			}
-		}
-	};
+
+			// Run min rules
+			if (rule.min && newSize >= rule.min && ! rule.hasRun && dir === 'up' && (! rule.max || newSize <= rule.max)) {
+				rule.callback();
+
+				rule.hasRun = true;
+			} else if (rule.min && newSize < rule.min) {
+				rule.hasRun = false;
+			}
+
+			// Run max rules
+			if (rule.max && newSize <= rule.max && ! rule.hasRun && dir === 'down' && (! rule.min || newSize >= rule.min)) {
+				rule.callback();
+
+				rule.hasRun = true;
+			} else if (rule.max && newSize > rule.max) {
+				rule.hasRun = false;
+			}
+
+			// Run size rule
+			if (! rule.min && ! rule.max && rule.size) {
+				if (newSize === rule.size) {
+					rule.callback();
+				}
+			}
+		},
+		allRules = [],
+		currentSize,
+		dir;
 
 	F.screen = {
 		/**

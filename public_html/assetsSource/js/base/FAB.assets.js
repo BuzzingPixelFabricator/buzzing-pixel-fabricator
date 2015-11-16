@@ -12,7 +12,7 @@
 	 *     @param {function} [options.failure]
 	 *     @param {function} [options.success]
 	 */
-	var load = function(options) {
+	var Load = function(options) {
 		// Set variables
 		var head = D.getElementsByTagName('head')[0],
 			root = options.root || '/',
@@ -67,9 +67,9 @@
 				};
 
 				scriptTag.src = root + js[i];
-			}
 
-			head.appendChild(scriptTag);
+				head.appendChild(scriptTag);
+			}
 		}
 
 		// Load CSS links
@@ -109,7 +109,7 @@
 		 *     @param {function} [options.success]
 		 */
 		load: function(options) {
-			new load(options);
+			new Load(options); // jshint ignore: line
 		}
-	}
+	};
 })(window.FAB, document);
