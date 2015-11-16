@@ -66,9 +66,6 @@
 				F.exec.push(name);
 			}
 		});
-
-		// Set ready state
-		F.ready = true;
 	};
 
 	// Run setVars when DOM ready
