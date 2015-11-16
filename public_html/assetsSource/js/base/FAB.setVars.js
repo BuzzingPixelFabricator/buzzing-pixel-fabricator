@@ -31,6 +31,16 @@
 		});
 
 		/**
+		 * Method for setting F vars
+		 *
+		 * @param {string} varName - Name of the variable to set
+		 * @param {*} value - Value to set for this global var
+		 */
+		F.$set = function(varName, value) {
+			F.vars[varName] = value;
+		};
+
+		/**
 		 * Method for getting F vars
 		 *
 		 * @param {string} getVar - Name of variable to get
