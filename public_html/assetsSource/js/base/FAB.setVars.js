@@ -30,13 +30,6 @@
 			}
 		});
 
-		// Set lang variables
-		$('[data-lang]').each(function() {
-			var $el = $(this);
-
-			F.lang[$el.data('lang')] = $el.data('value');
-		});
-
 		/**
 		 * Method for getting F vars
 		 *
