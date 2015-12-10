@@ -23,7 +23,7 @@ module.exports = function(grunt) {
 					scroll: false,
 					links: false
 				},
-				open: 'external',
+				open: 'local',
 				notify: false
 			},
 			lessCompress: projectFile.lessCompress,
