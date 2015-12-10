@@ -2,7 +2,7 @@ module.exports = function(grunt) {
 	var projectFile = grunt.file.readJSON('project.json'),
 		root = projectFile.root,
 		assetsPath = root + '/' + projectFile.assets,
-		assetsSource = root + '/' + projectFile.source,
+		assetsSource = projectFile.source,
 		conf = {
 			root: root,
 			assetsPath: assetsPath,
