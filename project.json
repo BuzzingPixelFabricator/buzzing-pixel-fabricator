@@ -3,6 +3,8 @@
 	"assets": "assets",
 	"source": "assetsSource",
 	"proxy": "https://fab.dev",
+	"watch": [
+	],
 	"lessCompress": true,
 	"lessBuild": [
 	],

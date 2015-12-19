@@ -1,5 +1,6 @@
 module.exports = function(grunt) {
 	var projectFile = grunt.file.readJSON('project.json'),
+		watch = projectFile.watch,
 		root = projectFile.root,
 		assetsPath = root + '/' + projectFile.assets,
 		assetsSource = projectFile.source,
@@ -30,6 +31,9 @@ module.exports = function(grunt) {
 			lessFiles: {},
 			jsFiles: {}
 		};
+
+	// Configure additional watch files
+	conf.bsFiles.src = watch.concat(conf.bsFiles.src);
 
 	// Configure proxy
 	if (projectFile.proxy === false) {
