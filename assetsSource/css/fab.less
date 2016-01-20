@@ -10,6 +10,11 @@
 // Reset
 .fab-reset();
 
+// Container
+.container {
+	.container();
+}
+
 // Forms and buttons
 .fab-forms-buttons();
 
@@ -23,6 +28,12 @@ html {
 
 // Base styling
 @import 'breakpoints/1-base';
+
+@media (min-width: 320px) {
+	html {
+		font-family: '"1"';
+	}
+}
 
 @media (min-width: 455px) {
 	// Set breakpoint size

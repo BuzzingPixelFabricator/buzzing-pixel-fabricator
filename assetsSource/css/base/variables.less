@@ -13,7 +13,7 @@
 
 @gridSpaceless: false; // set to true to eliminate inline grid whitespace hack
 
-@blockMarginBottom: 4; // default spacing for lists, form elements, and other blocks
+@blockMarginBottom: 40px; // default spacing for lists, form elements, and other blocks
 
 
 /*------------------------------------*\
@@ -83,7 +83,7 @@
 @paragraphFontWeight: @baseFontWeight;
 @paragraphLineHeight: 1.7em;
 
-@paragraphMarginBottom: 2;
+@paragraphMarginBottom: 20px;
 
 
 /*------------------------------------*\
@@ -95,14 +95,14 @@
 @headingFontWeight: @boldFontWeight;
 @headingLineHeight: 1.4em;
 
-@headingMarginBottom: 2;
+@headingMarginBottom: 20px;
 
-@h1: 3.6; // font sizes
-@h2: 3.2;
-@h3: 2.8;
-@h4: 2.4;
-@h5: 2;
-@h6: 1.6;
+@h1: 36px; // font sizes
+@h2: 32px;
+@h3: 28px;
+@h4: 24px;
+@h5: 20px;
+@h6: 16px;
 
 
 /*------------------------------------*\
@@ -117,8 +117,8 @@
 
 // Margin applied when using img-left and img-right classes
 
-@imageMarginBottom: 2;
-@imageMarginSide: 2;
+@imageMarginBottom: 20px;
+@imageMarginSide: 20px;
 
 @retinaSuffix: '-2x'; // retina filename suffix
 
@@ -163,9 +163,9 @@
 @listBulletStyle: disc;      // disc, circle, square, etc
 @listBulletPosition: outside; // inside or outside
 
-@nestedListMarginLeft: 2;
+@nestedListMarginLeft: 20px;
 
-@liMarginBottom: .2; // false to disable
+@liMarginBottom: 2px; // false to disable
 
 // Description Lists
 
@@ -175,9 +175,9 @@
 
 @dtColor: @darkerGray;
 @dtFont: @headingFont;
-@dtFontSize: 2;
+@dtFontSize: 20px;
 
-@dtMarginBottom: .2;
+@dtMarginBottom: 2px;
 
 // Description List Items
 
@@ -185,7 +185,7 @@
 @ddFont: @baseFont;
 @ddFontSize: @baseFontSize;
 
-@ddMarginBottom: 1;
+@ddMarginBottom: 10px;
 
 
 /*------------------------------------*\
@@ -194,7 +194,7 @@
 
 @quoteColor: @darkestGray;
 @quoteFont: Georgia, Times, serif;
-@quoteFontSize: 2;
+@quoteFontSize: 20px;
 @quoteFontStyle: italic;
 @quoteFontWeight: normal;
 @quoteLineHeight: 1.4em;
@@ -206,12 +206,12 @@
 
 @citeColor: @gray;
 @citeFont: @baseFont;
-@citeFontSize: 1.8;
+@citeFontSize: 18px;
 @citeFontStyle: normal;
 @citeFontWeight: normal;
 @citeLineHeight: 1.2em;
 
-@citeMarginTop: 1.4;
+@citeMarginTop: 14px;
 
 @citeIndicator: '\2014\00a0';
 
@@ -255,7 +255,7 @@
 
 @defaultRadius: 3px;
 @defaultOpacity: .2;
-@defaultDuration: .2s;
+@defaultDuration: .1s;
 @defaultTiming: ease-in-out;
 
 @abbrUnderline: dotted; // dotted, solid, none
@@ -280,7 +280,7 @@
 
 @codeBlockColor: @lightestGray;
 @codeBlockFont: @codeFont;
-@codeBlockFontSize: 1.3;
+@codeBlockFontSize: 13px;
 @codeBlockLineHeight: @paragraphLineHeight;
 @codeBlockTabSize: 4;
 @codeBlockWrap: false;
@@ -291,8 +291,8 @@
 @codeBlockBorderColor: @codeBorderColor; // false to disable
 @codeBlockRounded: false;
 
-@codeBlockPaddingHorizontal: 2;
-@codeBlockPaddingVertical: 1.4;
+@codeBlockPaddingHorizontal: 20px;
+@codeBlockPaddingVertical: 14px;
 
 
 /*------------------------------------*\
@@ -311,16 +311,16 @@
 @inputBorderColor: @lighterGray;
 @inputBorderColorHover: darken(@inputBorderColor, 10%);
 @inputBorderColorFocus: darken(@inputBorderColor, 20%);
-@inputBorderWidth: 1px;        // false to disable
+@inputBorderWidth: 1px; // false to disable
 @inputRounded: @defaultRadius; // false to disable
 
-@inputMinWidth: 20; // false to disable
-@inputMinHeight: 3; // false to disable
+@inputMinWidth: false; // false to disable
+@inputMinHeight: false; // false to disable
 
-@inputPaddingHorizontal: 1.6;
-@inputPaddingVertical: 1;
+@inputPaddingHorizontal: 16px;
+@inputPaddingVertical: 10px;
 
-@inputMarginBottom: 2;
+@inputMarginBottom: 20px;
 
 @inputPlaceholderColor: lighten(@inputColor, 40%);
 
@@ -358,36 +358,36 @@
 
 // Selects
 
-@multiSelectMinHeight: 8;
+@multiSelectMinHeight: 80px;
 
 // Checkboxes
 
-@checkboxMarginBottom: 1;
-@checkboxMarginRight: .5;
+@checkboxMarginBottom: 10px;
+@checkboxMarginRight: 5px;
 
 // Textareas
 
 @textareaLineHeight: 1.3em;
-@textareaMinHeight: 8;
+@textareaMinHeight: 80px;
 @textareaResize: vertical; // none, horizontal, vertical, both
-@textareaPaddingHorizontal: 1.6;
-@textareaPaddingVertical: 1;
+@textareaPaddingHorizontal: 16px;
+@textareaPaddingVertical: 10px;
 
 // Legends
 
 @legendColor: @darkerGray;
 @legendFont: @baseFont;
-@legendFontSize: 1.8;
+@legendFontSize: 18px;
 
-@legendMarginBottom: 1.4;
+@legendMarginBottom: 14px;
 
 // Labels
 
 @labelFontWeight: normal;
 @labelLineHeight: 1.3em;
 
-@labelMarginBottom: .4;
-@labelMarginRight: 1;
+@labelMarginBottom: 4px;
+@labelMarginRight: 10px;
 
 
 /*------------------------------------*\
@@ -401,8 +401,8 @@
 @buttonFontSize: @baseFontSize;
 @buttonFontWeight: normal;
 
-@buttonPaddingHorizontal: 3;
-@buttonPaddingVertical: 1.3;
+@buttonPaddingHorizontal: 30px;
+@buttonPaddingVertical: 13px;
 
 @buttonMarginBottom: false;
 
@@ -460,8 +460,8 @@
 
 @tableCellBorderColor: @lighterGray;
 
-@tableCellPaddingHorizontal: 1.6;
-@tableCellPaddingVertical: .6;
+@tableCellPaddingHorizontal: 16px;
+@tableCellPaddingVertical: 6px;
 
 // Table Captions
 
@@ -469,7 +469,7 @@
 
 @tableCaptionBackground: @lightestGray;
 
-@tableCaptionPaddingVertical: 1.2;
+@tableCaptionPaddingVertical: 12px;
 @tableCaptionPaddingHorizontal: @tableCellPaddingHorizontal;
 
 // Striping
