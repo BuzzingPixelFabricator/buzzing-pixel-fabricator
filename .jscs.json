@@ -67,7 +67,7 @@
 	"requireDollarBeforejQueryAssignment": true,
 	"requireDotNotation": true,
 	"requireLineBreakAfterVariableAssignment": true,
-	"requireMultipleVarDecl": true,
+	"requireMultipleVarDecl": false,
 	"requireOperatorBeforeLineBreak": true,
 	"requirePaddingNewlinesBeforeKeywords": [
 		"do",

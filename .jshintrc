@@ -14,7 +14,7 @@
 	"noempty": true,
 	"latedef": true,
 	"loopfunc": true,
-	"maxdepth": 3,
+	"maxdepth": 5,
 	"maxparams": 4,
 	"nonbsp": true,
 	"nonew": true,
