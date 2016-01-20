@@ -1,4 +1,4 @@
-# Fabricator 0.3.0
+# Fabricator 0.4.0
 
 You probably won't find this useful but you are welcome to use it. This is my build process and helper functions for building websites. Below you will find some documentation about how it works.
 
