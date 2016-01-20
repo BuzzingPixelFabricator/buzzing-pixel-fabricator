@@ -240,7 +240,7 @@ Whether to load the JS asynchronously.
 
 #### `options.failure`
 
-Type: `funcition`
+Type: `function`
 
 A callback function if loading fails.
 
@@ -289,3 +289,21 @@ FAB.screen.map([
 	}
 ]);
 ```
+
+## Custom jQuery Methods
+
+Fabricator includes a few custom jQuery chain-able methods:
+
+### `$('.my-el').jsHide();`
+
+The `jsHide()` method will add the class `js-hide` to the element(s).
+
+### `$('.my-el').jsShow();`
+
+The `jsShow()` method will remove the class `js-hide` from the element(s).
+
+## Prototype Methods
+
+### `'string'.toCamelCase`
+
+Fabricator adds the `toCamelCase()` method on the `String` prototype. This method removes spaces, dashes, and underscores and capitalizes the letter right after — hence, camelCase.
