@@ -8,31 +8,31 @@
 @import '1-base';
 
 // Mobile Landscape breakpoint
-@media (min-width: 455px) {
+@media (min-width: @mobileLandscapeBreakpoint) {
 	// Mobile landscape styling
 	@import '2-mobileLandscape';
 }
 
 // Tablet portrait breakpoint
-@media (min-width: 743px) {
+@media (min-width: @tabletPortraitBreakpoint) {
 	// Tablet portrait styling
 	@import '3-tabletPortrait';
 }
 
 // Desktop small breakpoint
-@media (min-width: 999px) {
+@media (min-width: @deskTopSmallBreakpoint) {
 	// Desktop small styling
 	@import '4-desktopSmall';
 }
 
 // Desktop medium breakpoint
-@media (min-width: 1255px) {
+@media (min-width: @desktopMediumBreakpoint) {
 	// Desktop medium styling
 	@import '5-desktopMedium';
 }
 
 // Desktop large breakpoint
-@media (min-width: 1415px) {
+@media (min-width: @desktopLargeBreakpoint) {
 	// Desktop large styling
 	@import '6-desktopLarge';
 }
