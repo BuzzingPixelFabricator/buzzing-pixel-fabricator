@@ -1,4 +1,4 @@
-# Fabricator 0.4.0
+# Fabricator 0.5.0
 
 You probably won't find this useful but you are welcome to use it. This is my build process and helper functions for building websites. Below you will find some documentation about how it works.
 
@@ -14,15 +14,15 @@ Copy the relevant files from this repo to your project, then CD to your project 
 npm install
 ```
 
-Because of a bug that can happen with Node on OS X, it might be necessary to run `sudo npm install` and enter your password.
+Because of a bug that can happen with Node on OS X, it might be necessary to run `sudo npm install` and enter your password. Sudo is a workaround and the reason often is that you have Xcode installed and you need to open it and accept the license agreement.
 
 ## Tasks
 
-Once installed, from the command line run `grunt` to compile your project and watch for changes, or `grunt compile` to compile everything once then quite.
+Once installed, from the command line run `grunt` to compile your project and watch for changes, or `grunt compile` to compile everything once then quit.
 
 ## project.json
 
-This is your file to configure. Generally, all keys are required to be present.
+This is your file to configure. Generally, all keys in the sample file are required to be present.
 
 ### `root`
 
@@ -88,13 +88,15 @@ Note: Keys are relative to the `assets ` directory and values are relative to th
 
 ## Mixins
 
-Fabricator contains a complete mixin library. They were taken from the open source Wee 3. See the Wee 3 docs for details (currently not available since Wee 3 is in beta) or peruse the mixin file for more.
+Fabricator contains a complete mixin library. They were taken from the open source Wee 3. See the [Wee 3 docs] for details or peruse the mixin file for more.
+
+[Wee 3 docs]: https://www.weepower.com/style/mixins
 
 You can also define your own custom mixins and variables in config/mixins and config/variables.
 
 ## Less auto build
 
-Any Less files placed in the build directory in the `assets` directory will automatically be built into the primary CSS output.
+Any Less files placed in the `assetsSource/css/build` directory will automatically be built into the primary CSS min file.
 
 ## Javascript
 
@@ -138,7 +140,7 @@ This will call the init function of your specified controller when the pageType 
 
 ## Setting and getting FAB vars
 
-FAB uses a global storage object and there are methods for getting and settings them:
+FAB uses a global storage object and there are methods for getting and setting those vars:
 
 ### `FAB.$set('myVar', 'myVal')`
 
@@ -307,3 +309,15 @@ The `jsShow()` method will remove the class `js-hide` from the element(s).
 ### `'string'.toCamelCase`
 
 Fabricator adds the `toCamelCase()` method on the `String` prototype. This method removes spaces, dashes, and underscores and capitalizes the letter right after — hence, camelCase.
+
+## Modules
+
+Modules are a way to group related CSS and JS, or just simply to have well organized CSS and JS sections.
+
+There are two types of modules: build and compile and you place them in their respective directories.
+
+Build modules Less and JS get compiled into the primary CSS and JS min files.
+
+Compile modules compile their Less and JS into their own CSS and JS min files.
+
+Use the example modules to get started.
