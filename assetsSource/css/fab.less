@@ -29,12 +29,17 @@ html {
 // Base styling
 @import 'breakpoints/1-base';
 
+// Base styling from build modules
+@import '../modules/build/**/css/1-base';
+
+// Set initial breakpoint
 @media (min-width: 320px) {
 	html {
 		font-family: '"1"';
 	}
 }
 
+// Mobile Landscape breakpoint
 @media (min-width: 455px) {
 	// Set breakpoint size
 	html {
@@ -43,44 +48,63 @@ html {
 
 	// Mobile landscape styling
 	@import 'breakpoints/2-mobileLandscape';
+
+	// Mobile landscape styling from build modules
+	@import '../modules/build/**/css/2-mobileLandscape';
 }
 
+// Tablet portrait breakpoint
 @media (min-width: 743px) {
 	// Set breakpoint size
 	html {
 		font-family: '"3"';
 	}
 
-	// Mobile landscape styling
+	// Tablet portrait styling
 	@import 'breakpoints/3-tabletPortrait';
+
+	// Tablet portrait styling from build modules
+	@import '../modules/build/**/css/3-tabletPortrait';
 }
 
+// Desktop small breakpoint
 @media (min-width: 999px) {
 	// Set breakpoint size
 	html {
 		font-family: '"4"';
 	}
 
-	// Mobile landscape styling
+	// Desktop small styling
 	@import 'breakpoints/4-desktopSmall';
+
+	// Desktop small styling from build modules
+	@import '../modules/build/**/css/4-desktopSmall';
 }
 
+// Desktop medium breakpoint
 @media (min-width: 1255px) {
 	// Set breakpoint size
 	html {
 		font-family: '"5"';
 	}
 
-	// Mobile landscape styling
+	// Desktop medium styling
 	@import 'breakpoints/5-desktopMedium';
+
+	// Desktop medium styling from build modules
+	@import '../modules/build/**/css/5-desktopMedium';
 }
 
+// Desktop large breakpoint
 @media (min-width: 1415px) {
 	// Set breakpoint size
 	html {
 		font-family: '"5"';
 	}
 
-	// Mobile landscape styling
+	// Desktop large styling
 	@import 'breakpoints/6-desktopLarge';
+
+	// Desktop large styling from build modules
+	@import '../modules/build/**/css/6-desktopLarge';
 }

@@ -67,7 +67,8 @@ module.exports = function(grunt) {
 		assetsSource + '/js/fab.js',
 		assetsSource + '/js/base/*.js',
 		assetsSource + '/js/controller.js',
-		assetsSource + '/js/build/*.js'
+		assetsSource + '/js/build/*.js',
+		assetsSource + '/modules/build/**/js/*.js'
 	];
 
 	if (projectFile.jsBuild.length) {
@@ -115,7 +116,10 @@ module.exports = function(grunt) {
 				options: {
 					compress: conf.lessCompress,
 					yuicompress: conf.lessCompress,
-					optimization: 2
+					optimization: 2,
+					plugins: [
+						require('less-plugin-glob')
+					]
 				},
 				files: conf.lessFiles
 			}
@@ -153,7 +157,8 @@ module.exports = function(grunt) {
 				files: [
 					'<%= conf.assetsSource %>/css/*.less',
 					'<%= conf.assetsSource %>/css/*/*.less',
-					'<%= conf.assetsSource %>/css/*/*.css'
+					'<%= conf.assetsSource %>/css/*/*.css',
+					'<%= conf.assetsSource %>/modules/build/**/css/*.less'
 				],
 				tasks: [
 					'less',
@@ -166,7 +171,8 @@ module.exports = function(grunt) {
 			javascript: {
 				files: [
 					'<%= conf.assetsSource %>/js/*.js',
-					'<%= conf.assetsSource %>/js/*/*.js'
+					'<%= conf.assetsSource %>/js/*/*.js',
+					'<%= conf.assetsSource %>/modules/build/**/js/*.js'
 				],
 				tasks: [
 					'uglify',
