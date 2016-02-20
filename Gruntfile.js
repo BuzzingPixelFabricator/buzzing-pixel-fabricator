@@ -90,6 +90,14 @@ module.exports = function(grunt) {
 		}
 	}
 
+	// Add module compile
+	grunt.file.expand(assetsSource + '/modules/compile/*').forEach(function(i) {
+		var moduleName = i.split('/').pop();
+
+		conf.lessFiles[assetsPath + '/modules/' + moduleName + '.min.css'] = i + '/css/module.less';
+		conf.jsFiles[assetsPath + '/modules/' + moduleName + '.min.js'] = i + '/js/*.js';
+	});
+
 	grunt.initConfig({
 		conf: conf,
 		projectFile: projectFile,
@@ -158,7 +166,8 @@ module.exports = function(grunt) {
 					'<%= conf.assetsSource %>/css/*.less',
 					'<%= conf.assetsSource %>/css/*/*.less',
 					'<%= conf.assetsSource %>/css/*/*.css',
-					'<%= conf.assetsSource %>/modules/build/**/css/*.less'
+					'<%= conf.assetsSource %>/modules/build/**/css/*.less',
+					'<%= conf.assetsSource %>/modules/compile/**/css/*.less'
 				],
 				tasks: [
 					'less',
@@ -172,7 +181,8 @@ module.exports = function(grunt) {
 				files: [
 					'<%= conf.assetsSource %>/js/*.js',
 					'<%= conf.assetsSource %>/js/*/*.js',
-					'<%= conf.assetsSource %>/modules/build/**/js/*.js'
+					'<%= conf.assetsSource %>/modules/build/**/js/*.js',
+					'<%= conf.assetsSource %>/modules/compile/**/js/*.js'
 				],
 				tasks: [
 					'uglify',

@@ -1,0 +1,38 @@
+// Imports
+@import (reference) '../../../../css/base/variables';
+@import (reference) '../../../../css/config/variables';
+@import (reference) '../../../../css/base/mixins.less';
+@import (reference) '../../../../css/config/mixins';
+
+// Base styling
+@import '1-base';
+
+// Mobile Landscape breakpoint
+@media (min-width: 455px) {
+	// Mobile landscape styling
+	@import '2-mobileLandscape';
+}
+
+// Tablet portrait breakpoint
+@media (min-width: 743px) {
+	// Tablet portrait styling
+	@import '3-tabletPortrait';
+}
+
+// Desktop small breakpoint
+@media (min-width: 999px) {
+	// Desktop small styling
+	@import '4-desktopSmall';
+}
+
+// Desktop medium breakpoint
+@media (min-width: 1255px) {
+	// Desktop medium styling
+	@import '5-desktopMedium';
+}
+
+// Desktop large breakpoint
+@media (min-width: 1415px) {
+	// Desktop large styling
+	@import '6-desktopLarge';
+}
