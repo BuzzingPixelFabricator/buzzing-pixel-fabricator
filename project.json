@@ -1,4 +1,5 @@
 {
+	"about-this-file": "This is your grunt configuration file. All keys are required so do not remove any of them, but you may change their values",
 	"root": "public_html",
 	"assets": "assets",
 	"source": "assetsSource",
