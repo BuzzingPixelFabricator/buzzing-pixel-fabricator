@@ -1,37 +1,37 @@
 module.exports = function(grunt) {
-	var projectFile = grunt.file.readJSON('project.json'),
-		watch = projectFile.watch,
-		root = projectFile.root,
-		assetsPath = root + '/' + projectFile.assets,
-		assetsSource = projectFile.source,
-		conf = {
-			root: root,
-			assetsPath: assetsPath,
-			assetsSource: assetsSource,
-			bsFiles: {
-				src: [
-					assetsPath + '/css/style.min.css',
-					assetsPath + '/js/lib/*.js',
-					assetsPath + '/js/*.js'
-				]
+	var projectFile = grunt.file.readJSON('project.json');
+	var watch = projectFile.watch;
+	var root = projectFile.root;
+	var assetsPath = root + '/' + projectFile.assets;
+	var assetsSource = projectFile.source;
+	var conf = {
+		root: root,
+		assetsPath: assetsPath,
+		assetsSource: assetsSource,
+		bsFiles: {
+			src: [
+				assetsPath + '/css/style.min.css',
+				assetsPath + '/js/lib/*.js',
+				assetsPath + '/js/*.js'
+			]
+		},
+		bsOptions: {
+			watchTask: true,
+			proxy: projectFile.proxy,
+			ghostMode: {
+				clicks: false,
+				forms: false,
+				scroll: false,
+				links: false
 			},
-			bsOptions: {
-				watchTask: true,
-				proxy: projectFile.proxy,
-				ghostMode: {
-					clicks: false,
-					forms: false,
-					scroll: false,
-					links: false
-				},
-				open: 'local',
-				notify: false
-			},
-			lessCompress: projectFile.lessCompress,
-			lessFiles: {},
-			jsFiles: {},
-			sourceMaps: projectFile.sourceMaps
-		};
+			open: 'local',
+			notify: false
+		},
+		lessCompress: projectFile.lessCompress,
+		lessFiles: {},
+		jsFiles: {},
+		sourceMaps: projectFile.sourceMaps
+	};
 
 	// Configure additional watch files
 	conf.bsFiles.src = watch.concat(conf.bsFiles.src);
