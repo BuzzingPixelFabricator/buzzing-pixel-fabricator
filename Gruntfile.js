@@ -29,7 +29,8 @@ module.exports = function(grunt) {
 			},
 			lessCompress: projectFile.lessCompress,
 			lessFiles: {},
-			jsFiles: {}
+			jsFiles: {},
+			sourceMaps: projectFile.sourceMaps
 		};
 
 	// Configure additional watch files
@@ -135,7 +136,7 @@ module.exports = function(grunt) {
 		uglify: {
 			build: {
 				options: {
-					sourceMap: true
+					sourceMap: conf.sourceMaps
 				},
 				files: conf.jsFiles
 			}
