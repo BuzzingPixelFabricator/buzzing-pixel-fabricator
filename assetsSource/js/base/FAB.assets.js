@@ -18,25 +18,25 @@
 	 */
 	var Load = function(options) {
 		// Set variables
-		var head = D.getElementsByTagName('head')[0],
-			root = options.root || '/',
-			js = typeof options.js === 'string' ? [options.js] : options.js,
-			css = typeof options.css === 'string' ? [options.css] : options.css,
-			async = options.async === true,
-			i,
-			counter = 0,
-			error = false,
-			check = function() {
-				if (counter !== 0) {
-					return;
-				}
+		var head = D.getElementsByTagName('head')[0];
+		var root = options.root || '/';
+		var js = typeof options.js === 'string' ? [options.js] : options.js;
+		var css = typeof options.css === 'string' ? [options.css] : options.css;
+		var async = options.async === true;
+		var i;
+		var counter = 0;
+		var error = false;
+		var check = function() {
+			if (counter !== 0) {
+				return;
+			}
 
-				if (error && typeof options.failure === 'function') {
-					options.failure();
-				} else if (! error && typeof options.success === 'function') {
-					options.success();
-				}
-			};
+			if (error && typeof options.failure === 'function') {
+				options.failure();
+			} else if (! error && typeof options.success === 'function') {
+				options.success();
+			}
+		};
 
 		// Add all JS items to the counter
 		for (i in js) {
