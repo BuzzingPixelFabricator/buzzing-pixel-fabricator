@@ -83,6 +83,37 @@
 
 
 /*------------------------------------*\
+	# Animation
+\*------------------------------------*/
+
+.animation (...) {
+	-webkit-animation: @arguments;
+	animation: @arguments;
+}
+.keyframes (@name; @start; @end) {
+	@-webkit-keyframes ~'@{name}' {
+		0% {
+			@start();
+		}
+		100% {
+			@end();
+		}
+	}
+	@keyframes ~'@{name}' {
+		0% {
+			@start();
+		}
+		100% {
+			@end();
+		}
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
 	# Backgrounds
 \*------------------------------------*/
 
@@ -2322,6 +2353,12 @@
 }
 .outline (@value: 'thin dotted') {
 	outline: ~'@{value}';
+}
+.text-overflow (@value) {
+	text-overflow: @value;
+}
+.white-space (@value) {
+	white-space: @value;
 }
 .letter-spacing (@value) {
 	.check () when (isunit(@value, '')) {
