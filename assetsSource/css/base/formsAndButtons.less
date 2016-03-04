@@ -48,14 +48,14 @@
 			.color(@inputColorDisabled);
 			.cursor(@inputCursorDisabled);
 		}
-		&.\--borderless {
+		&--borderless {
 			.border(@inputBackground);
 			&:hover,
 			&:focus {
 				.border(@inputBackground);
 			}
 		}
-		&.\--inline {
+		&--inline {
 			.inline-block();
 			.margin(right; .6);
 			.width(auto);
@@ -73,7 +73,7 @@
 		.line-height(@labelLineHeight);
 		.margin(right; @labelMarginRight);
 		.spaced(@labelMarginBottom);
-		&.\--inline {
+		&--inline {
 			.inline-block();
 		}
 	}
@@ -107,7 +107,7 @@
 			.transition(all);
 		}
 		.check();
-		&.\--light {
+		&--light {
 			.background(lighten(@buttonBackground, 38%));
 			.border-color(lighten(@buttonBackground, 38%));
 			.color(@buttonBackground) !important;
@@ -116,7 +116,7 @@
 				.border-color(lighten(@buttonBackground, 28%));
 			}
 		}
-		&.\--outlined {
+		&--outlined {
 			.background(none);
 			.border-color(@buttonBackground);
 			.color(@buttonBackground);
@@ -125,7 +125,7 @@
 				.color(@buttonColor);
 			}
 			&:disabled,
-			&.\--disabled {
+			&--disabled {
 				.background(lighten(@disabledButtonBackground, 5%));
 				.border-color(lighten(@buttonBackground, 20%));
 				&:hover {
@@ -134,7 +134,7 @@
 				}
 			}
 		}
-		&.\--colored {
+		&--colored {
 			.background(@coloredButtonBackground);
 			.border-color(@coloredButtonBorderColor);
 			.color(@coloredButtonColor);
@@ -146,7 +146,7 @@
 			&:active {
 				.background(@coloredButtonBackgroundActive);
 			}
-			&.\--outlined {
+			&--outlined {
 				.background(none);
 				.border-color(@coloredButtonBackground);
 				.color(@coloredButtonBackground);
@@ -155,7 +155,7 @@
 					.color(@buttonColor);
 				}
 				&:disabled,
-				&.\--disabled {
+				&--disabled {
 					.background(lighten(@disabledButtonBackground, 5%));
 					.border-color(lighten(@buttonBackground, 20%));
 					.color(@disabledButtonColor);
@@ -167,7 +167,7 @@
 			}
 		}
 		&:disabled,
-		&.\--disabled {
+		&--disabled {
 			.background(@disabledButtonBackground);
 			.border-color(@disabledButtonBackground);
 			.color(@disabledButtonColor);
