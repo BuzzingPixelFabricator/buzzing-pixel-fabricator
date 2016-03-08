@@ -15,8 +15,8 @@ module.exports = function(grunt) {
 		bsFiles: {
 			src: [
 				assetsPath + '/css/style.min.css',
-				assetsPath + '/js/lib/*.js',
-				assetsPath + '/js/*.js'
+				assetsPath + '/js/lib/**/*.js',
+				assetsPath + '/js/**/*.js'
 			]
 		},
 		bsOptions: {
@@ -47,8 +47,8 @@ module.exports = function(grunt) {
 
 	// Configure less files
 	conf.lessFiles[assetsPath + '/css/style.min.css'] = [
-		assetsSource + '/css/build/*.less',
-		assetsSource + '/css/build/*.css',
+		assetsSource + '/css/build/**/*.less',
+		assetsSource + '/css/build/**/*.css',
 		assetsSource + '/css/fab.less'
 	];
 
@@ -70,10 +70,10 @@ module.exports = function(grunt) {
 	// Configure JS files
 	conf.jsFiles[assetsPath + '/js/script.min.js'] = [
 		assetsSource + '/js/fab.js',
-		assetsSource + '/js/base/*.js',
+		assetsSource + '/js/base/**/*.js',
 		assetsSource + '/js/controller.js',
-		assetsSource + '/js/build/*.js',
-		assetsSource + '/modules/build/**/js/*.js'
+		assetsSource + '/js/build/**/*.js',
+		assetsSource + '/modules/build/**/js/**/*.js'
 	];
 
 	if (projectFile.jsBuild.length) {
@@ -147,9 +147,9 @@ module.exports = function(grunt) {
 		},
 		jshint: {
 			files: [
-				'<%= conf.assetsSource %>/js/*.js',
-				'<%= conf.assetsSource %>/js/base/*.js',
-				'<%= conf.assetsSource %>/js/build/*.js'
+				'<%= conf.assetsSource %>/js/**/*.js',
+				'<%= conf.assetsSource %>/js/base/**/*.js',
+				'<%= conf.assetsSource %>/js/build/**/*.js'
 			],
 			options: {
 				jshintrc: true
@@ -157,9 +157,9 @@ module.exports = function(grunt) {
 		},
 		jscs: {
 			src: [
-				'<%= conf.assetsSource %>/js/*.js',
-				'<%= conf.assetsSource %>/js/base/*.js',
-				'<%= conf.assetsSource %>/js/build/*.js'
+				'<%= conf.assetsSource %>/js/**/*.js',
+				'<%= conf.assetsSource %>/js/base/**/*.js',
+				'<%= conf.assetsSource %>/js/build/**/*.js'
 			],
 			options: {
 				config: '.jscs.json'
@@ -168,9 +168,12 @@ module.exports = function(grunt) {
 		watch: {
 			styles: {
 				files: [
-					'<%= conf.assetsSource %>/css/**/*',
-					'<%= conf.assetsSource %>/modules/build/**/css/**/*',
-					'<%= conf.assetsSource %>/modules/compile/**/css/**/*'
+					'<%= conf.assetsSource %>/css/**/*.less',
+					'<%= conf.assetsSource %>/css/**/*.css',
+					'<%= conf.assetsSource %>/modules/build/**/css/**/*.less',
+					'<%= conf.assetsSource %>/modules/build/**/css/**/*.css',
+					'<%= conf.assetsSource %>/modules/compile/**/css/**/*.less',
+					'<%= conf.assetsSource %>/modules/compile/**/css/**/*.css'
 				],
 				tasks: [
 					'less',
@@ -182,9 +185,9 @@ module.exports = function(grunt) {
 			},
 			javascript: {
 				files: [
-					'<%= conf.assetsSource %>/js/**/*',
-					'<%= conf.assetsSource %>/modules/build/**/js/**/*',
-					'<%= conf.assetsSource %>/modules/compile/**/js/**/*'
+					'<%= conf.assetsSource %>/js/**/*.js',
+					'<%= conf.assetsSource %>/modules/build/**/js/**/*.js',
+					'<%= conf.assetsSource %>/modules/compile/**/js/**/*.js'
 				],
 				tasks: [
 					'uglify',
