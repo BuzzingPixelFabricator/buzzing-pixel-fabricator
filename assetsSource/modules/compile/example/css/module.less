@@ -3,13 +3,18 @@
 	All compiled modules must have this file and it should not be edited
 /*============================================================================*/
 
-// Imports
+// Import Variables
 @import (reference) '../../../../css/base/variables';
 @import (reference) '../../../../css/config/variables/**/*.less';
+@import (reference) 'variables/**/*';
+
+// Import Mixins
 @import (reference) '../../../../css/base/mixins.less';
 @import (reference) '../../../../css/config/mixins/**/*.less';
+@import (reference) 'mixins/**/*';
 
 // Base styling
+@import 'lib/**/*';
 @import '1-base';
 
 // Mobile Landscape breakpoint

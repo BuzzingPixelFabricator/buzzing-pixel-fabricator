@@ -38,7 +38,13 @@ html {
 @import 'breakpoints/1-base';
 
 // Base styling from build modules
-@import '../modules/build/**/css/1-base';
+.moduleBase () {
+	@import (multiple, reference) '../modules/build/**/css/variables/**/*.less';
+	@import (multiple, reference) '../modules/build/**/css/mixins/**/*.less';
+	@import '../modules/build/**/css/lib/**/*';
+	@import '../modules/build/**/css/1-base';
+}
+.moduleBase();
 
 // Set initial breakpoint
 @media (min-width: @mobileBreakpoint) {
@@ -58,7 +64,12 @@ html {
 	@import 'breakpoints/2-mobileLandscape';
 
 	// Mobile landscape styling from build modules
-	@import '../modules/build/**/css/2-mobileLandscape';
+	.moduleBase2 () {
+		@import (multiple, reference) '../modules/build/**/css/variables/**/*.less';
+		@import (multiple, reference) '../modules/build/**/css/mixins/**/*.less';
+		@import '../modules/build/**/css/2-mobileLandscape';
+	}
+	.moduleBase2();
 }
 
 // Tablet portrait breakpoint
@@ -72,7 +83,12 @@ html {
 	@import 'breakpoints/3-tabletPortrait';
 
 	// Tablet portrait styling from build modules
-	@import '../modules/build/**/css/3-tabletPortrait';
+	.moduleBase3 () {
+		@import (multiple, reference) '../modules/build/**/css/variables/**/*.less';
+		@import (multiple, reference) '../modules/build/**/css/mixins/**/*.less';
+		@import '../modules/build/**/css/3-tabletPortrait';
+	}
+	.moduleBase3();
 }
 
 // Desktop small breakpoint
@@ -86,7 +102,12 @@ html {
 	@import 'breakpoints/4-desktopSmall';
 
 	// Desktop small styling from build modules
-	@import '../modules/build/**/css/4-desktopSmall';
+	.moduleBase4 () {
+		@import (multiple, reference) '../modules/build/**/css/variables/**/*.less';
+		@import (multiple, reference) '../modules/build/**/css/mixins/**/*.less';
+		@import '../modules/build/**/css/4-desktopSmall';
+	}
+	.moduleBase4();
 }
 
 // Desktop medium breakpoint
@@ -100,7 +121,12 @@ html {
 	@import 'breakpoints/5-desktopMedium';
 
 	// Desktop medium styling from build modules
-	@import '../modules/build/**/css/5-desktopMedium';
+	.moduleBase5 () {
+		@import (multiple, reference) '../modules/build/**/css/variables/**/*.less';
+		@import (multiple, reference) '../modules/build/**/css/mixins/**/*.less';
+		@import '../modules/build/**/css/5-desktopMedium';
+	}
+	.moduleBase5();
 }
 
 // Desktop large breakpoint
@@ -114,5 +140,10 @@ html {
 	@import 'breakpoints/6-desktopLarge';
 
 	// Desktop large styling from build modules
-	@import '../modules/build/**/css/6-desktopLarge';
+	.moduleBase6 () {
+		@import (multiple, reference) '../modules/build/**/css/variables/**/*.less';
+		@import (multiple, reference) '../modules/build/**/css/mixins/**/*.less';
+		@import '../modules/build/**/css/6-desktopLarge';
+	}
+	.moduleBase6();
 }
