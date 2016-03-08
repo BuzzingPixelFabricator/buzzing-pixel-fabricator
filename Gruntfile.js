@@ -168,11 +168,9 @@ module.exports = function(grunt) {
 		watch: {
 			styles: {
 				files: [
-					'<%= conf.assetsSource %>/css/*.less',
-					'<%= conf.assetsSource %>/css/*/*.less',
-					'<%= conf.assetsSource %>/css/*/*.css',
-					'<%= conf.assetsSource %>/modules/build/**/css/*.less',
-					'<%= conf.assetsSource %>/modules/compile/**/css/*.less'
+					'<%= conf.assetsSource %>/css/**/*',
+					'<%= conf.assetsSource %>/modules/build/**/css/**/*',
+					'<%= conf.assetsSource %>/modules/compile/**/css/**/*'
 				],
 				tasks: [
 					'less',
@@ -184,10 +182,9 @@ module.exports = function(grunt) {
 			},
 			javascript: {
 				files: [
-					'<%= conf.assetsSource %>/js/*.js',
-					'<%= conf.assetsSource %>/js/*/*.js',
-					'<%= conf.assetsSource %>/modules/build/**/js/*.js',
-					'<%= conf.assetsSource %>/modules/compile/**/js/*.js'
+					'<%= conf.assetsSource %>/js/**/*',
+					'<%= conf.assetsSource %>/modules/build/**/js/**/*',
+					'<%= conf.assetsSource %>/modules/compile/**/js/**/*'
 				],
 				tasks: [
 					'uglify',
