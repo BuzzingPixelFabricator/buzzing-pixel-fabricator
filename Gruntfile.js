@@ -4,6 +4,7 @@
 
 module.exports = function(grunt) {
 	var key;
+	var packageFile = grunt.file.readJSON('package.json');
 	var projectFile = grunt.file.readJSON('project.json');
 	var watch = projectFile.watch;
 	var root = projectFile.root;
@@ -38,6 +39,9 @@ module.exports = function(grunt) {
 		jsFiles: {},
 		sourceMaps: projectFile.sourceMaps
 	};
+
+	// Delete compile cache
+	grunt.file.delete(assetsSource + '/compileCache/js/');
 
 	// Configure additional watch files
 	conf.bsFiles.src = watch.concat(conf.bsFiles.src);
@@ -119,6 +123,14 @@ module.exports = function(grunt) {
 		conf.lessFiles[assetsPath + '/modules/' + moduleName + '.min.css'] = i + '/css/module.less';
 		conf.jsFiles[assetsPath + '/modules/' + moduleName + '.min.js'] = i + '/js/*.js';
 	});
+
+	// Write version file
+	grunt.file.write(assetsSource + '/compileCache/js/version.js', '$(function() {window.FAB = window.FAB || {};window.FAB.version = "' + packageFile.version + '";});');
+
+	// Include version file
+	conf.jsFiles[assetsPath + '/js/script.min.js'].push(
+		assetsSource + '/compileCache/js/version.js'
+	);
 
 	grunt.initConfig({
 		conf: conf,
