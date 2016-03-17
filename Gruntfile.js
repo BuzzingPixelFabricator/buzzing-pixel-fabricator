@@ -3,11 +3,13 @@
 /*============================================================================*/
 
 module.exports = function(grunt) {
+	var key;
 	var projectFile = grunt.file.readJSON('project.json');
 	var watch = projectFile.watch;
 	var root = projectFile.root;
 	var assetsPath = root + '/' + projectFile.assets;
 	var assetsSource = projectFile.source;
+	var enabledJsComponents = projectFile.enabledJsComponents;
 	var conf = {
 		root: root,
 		assetsPath: assetsPath,
@@ -61,20 +63,33 @@ module.exports = function(grunt) {
 	}
 
 	if (Object.keys(projectFile.lessFiles).length) {
-		for (var key in projectFile.lessFiles) {
+		for (key in projectFile.lessFiles) {
 			conf.lessFiles[assetsPath + '/' + key] =
 				assetsSource + '/' + projectFile.lessFiles[key];
 		}
 	}
 
 	// Configure JS files
-	conf.jsFiles[assetsPath + '/js/script.min.js'] = [
-		assetsSource + '/js/fab.js',
-		assetsSource + '/js/base/**/*.js',
-		assetsSource + '/js/controller.js',
+	conf.jsFiles[assetsPath + '/js/script.min.js'] = [];
+
+	if (enabledJsComponents.indexOf('base') > -1) {
+		conf.jsFiles[assetsPath + '/js/script.min.js'].push(
+			assetsSource + '/js/fab.js',
+			assetsSource + '/js/base/**/*.js',
+			assetsSource + '/js/controller.js'
+		);
+	}
+
+	if (enabledJsComponents.indexOf('lib') > -1) {
+		conf.jsFiles[assetsPath + '/js/script.min.js'].push(
+			assetsSource + '/js/lib/**/*.js'
+		);
+	}
+
+	conf.jsFiles[assetsPath + '/js/script.min.js'].push(
 		assetsSource + '/js/build/**/*.js',
 		assetsSource + '/modules/build/**/js/**/*.js'
-	];
+	);
 
 	if (projectFile.jsBuild.length) {
 		projectFile.jsBuild.forEach(function(i) {
@@ -84,12 +99,14 @@ module.exports = function(grunt) {
 		});
 	}
 
-	conf.jsFiles[assetsPath + '/js/script.min.js'].push(
-		assetsSource + '/js/ready.js'
-	);
+	if (enabledJsComponents.indexOf('base') > -1) {
+		conf.jsFiles[assetsPath + '/js/script.min.js'].push(
+			assetsSource + '/js/ready.js'
+		);
+	}
 
 	if (Object.keys(projectFile.jsFiles).length) {
-		for (var key in projectFile.jsFiles) {
+		for (key in projectFile.jsFiles) {
 			conf.jsFiles[assetsPath + '/' + key] =
 				assetsSource + '/' + projectFile.jsFiles[key];
 		}

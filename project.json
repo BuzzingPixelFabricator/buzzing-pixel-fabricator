@@ -15,5 +15,9 @@
 	],
 	"jsFiles": {
 	},
-	"sourceMaps": true
+	"sourceMaps": true,
+	"enabledJsComponents": [
+		"base",
+		"lib"
+	]
 }
