@@ -39,20 +39,20 @@
 // Base styling
 @import 'breakpoints/1-base';
 
+// Base styling from build modules
+.moduleBase () {
+	@import (multiple, reference) '../modules/build/**/css/variables/**/*.less';
+	@import (multiple, reference) '../modules/build/**/css/mixins/**/*.less';
+	@import '../modules/build/**/css/lib/**/*';
+	@import '../modules/build/**/css/1-base';
+}
+.moduleBase();
+
 .responsive () when (@responsiveEnabled = true) {
 	// Set base size
 	html {
 		font-family: '"1"';
 	}
-
-	// Base styling from build modules
-	.moduleBase () {
-		@import (multiple, reference) '../modules/build/**/css/variables/**/*.less';
-		@import (multiple, reference) '../modules/build/**/css/mixins/**/*.less';
-		@import '../modules/build/**/css/lib/**/*';
-		@import '../modules/build/**/css/1-base';
-	}
-	.moduleBase();
 
 	// Set initial breakpoint
 	@media (min-width: @mobileBreakpoint) {
