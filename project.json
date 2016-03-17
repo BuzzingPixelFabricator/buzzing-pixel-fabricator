@@ -11,7 +11,11 @@
 	],
 	"lessFiles": {
 	},
+	"jsBuildBefore": [
+	],
 	"jsBuild": [
+	],
+	"jsBuildAfter": [
 	],
 	"jsFiles": {
 	},

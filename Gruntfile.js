@@ -74,6 +74,14 @@ module.exports = function(grunt) {
 	// Configure JS files
 	conf.jsFiles[assetsPath + '/js/script.min.js'] = [];
 
+	if (projectFile.jsBuildBefore.length) {
+		projectFile.jsBuildBefore.forEach(function(i) {
+			conf.jsFiles[assetsPath + '/js/script.min.js'].push(
+				assetsSource + '/' + i
+			);
+		});
+	}
+
 	if (enabledJsComponents.indexOf('base') > -1) {
 		conf.jsFiles[assetsPath + '/js/script.min.js'].push(
 			assetsSource + '/js/fab.js',
@@ -105,6 +113,14 @@ module.exports = function(grunt) {
 		conf.jsFiles[assetsPath + '/js/script.min.js'].push(
 			assetsSource + '/js/ready.js'
 		);
+	}
+
+	if (projectFile.jsBuildAfter.length) {
+		projectFile.jsBuildAfter.forEach(function(i) {
+			conf.jsFiles[assetsPath + '/js/script.min.js'].push(
+				assetsSource + '/' + i
+			);
+		});
 	}
 
 	if (Object.keys(projectFile.jsFiles).length) {
