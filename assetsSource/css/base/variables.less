@@ -4,9 +4,10 @@
 /*============================================================================*/
 
 /*------------------------------------*\
-	# Breakpoints
+	# Responsive
 \*------------------------------------*/
 
+@responsiveEnabled: true;
 @mobileBreakpoint: 320px;
 @mobileLandscapeBreakpoint: 455px;
 @tabletPortraitBreakpoint: 743px;
@@ -25,6 +26,7 @@
 @minWidth: false;  // min container width, false to disable
 @maxWidth: false; // max container width, false to disable
 
+@containerEnabled: true;
 @bumperPadding: false;  // bumper padding on containers, false to disable
 @padContainer: true; // enable bumperPadding on containers
 
@@ -364,6 +366,8 @@
 	# Forms
 \*------------------------------------*/
 
+@formsAndButtonsEnabled: true;
+
 // Inputs
 
 @inputColor: @darkerGray;
@@ -515,6 +519,8 @@
 /*------------------------------------*\
 	# Tables
 \*------------------------------------*/
+
+@tablesEnabled: true;
 
 @tableStyled: true;   // apply base styling by default
 @tableBordered: true; // apply outer border by default
