@@ -53,8 +53,6 @@ module.exports = function(grunt) {
 
 	// Configure less files
 	conf.lessFiles[assetsPath + '/css/style.min.css'] = [
-		assetsSource + '/css/build/**/*.less',
-		assetsSource + '/css/build/**/*.css',
 		assetsSource + '/css/fab.less'
 	];
 
