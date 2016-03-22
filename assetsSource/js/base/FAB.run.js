@@ -37,7 +37,7 @@
 		// Run the controller
 		if (F.controller) {
 			// Check if an array for this pageType has been defined
-			var pageTypeArray = F.controller[F.$get('pageType')];
+			var pageTypeArray = F.controller[F.get('pageType')];
 
 			if (pageTypeArray) {
 				pageTypeArray.forEach(function(fnName) {

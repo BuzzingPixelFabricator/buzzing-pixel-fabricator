@@ -22,6 +22,15 @@
 				F.fn.autoInit.push(fnName);
 			}
 
+			// Define function set variable storage
+			obj.vars = {};
+			obj.set = function(varName, varVal) {
+				F.set(varName, varVal, obj);
+			};
+			obj.get = function(varName, defaultVal, obj) {
+				return F.get(varName, defaultVal, obj);
+			};
+
 			// Create a copy for cloning
 			F.fn.made[fnName] = $.extend(true, {}, obj);
 

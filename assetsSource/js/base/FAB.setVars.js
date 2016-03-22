@@ -39,9 +39,12 @@
 		 *
 		 * @param {string} varName - Name of the variable to set
 		 * @param {*} value - Value to set for this global var
+		 * @param {object} [obj] - Object to set vars to
 		 */
-		F.$set = function(varName, value) {
-			F.vars[varName] = value;
+		F.set = function(varName, value, obj) {
+			obj = obj || F;
+
+			obj.vars[varName] = value;
 		};
 
 		/**
@@ -49,14 +52,17 @@
 		 *
 		 * @param {string} getVar - Name of variable to get
 		 * @param {*} [defaultVal] - Default value to return if no var
+		 * @param {object} [obj] - Object to get vars from
 		 * @return {*} - Variable value, default value, or null
 		 */
-		F.$get = function(getVar, defaultVal) {
+		F.get = function(varName, defaultVal, obj) {
+			obj = obj || F;
+
 			if (
-				F.vars[getVar] !== null &&
-				F.vars[getVar] !== undefined
+				obj.vars[varName] !== null &&
+				obj.vars[varName] !== undefined
 			) {
-				return F.vars[getVar];
+				return obj.vars[varName];
 			}
 
 			return defaultVal || null;
