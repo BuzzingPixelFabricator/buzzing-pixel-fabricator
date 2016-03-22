@@ -2,8 +2,10 @@
 	'use strict';
 
 	F.fn.make('indexSampleController', {
+		autoInit: true,
+
 		init: function() {
-			console.log('indexSampleController');
+			console.log('indexSampleControllerConsole');
 		}
 	});
 })(window.FAB);

@@ -7,6 +7,8 @@
 
 	// Run F functions
 	var runFAB = function() {
+		var hasRun = [];
+
 		// Make sure everything is ready
 		if (! F.ready) {
 			setTimeout(function() {
@@ -16,14 +18,20 @@
 			return;
 		}
 
-		// Run constructors
-		F.fn.constructors.forEach(function(fnName) {
-			F.fn.clone(fnName)._construct();
+		// Run Auto Initializers
+		F.fn.autoInit.forEach(function(fnName) {
+			F[fnName].init();
+
+			hasRun.push(fnName);
 		});
 
 		// Run any init function requested by exec
-		F.exec.forEach(function(i) {
-			F[i].init();
+		F.exec.forEach(function(fnName) {
+			if (hasRun.indexOf(fnName) < 0) {
+				F[fnName].init();
+
+				hasRun.push(fnName);
+			}
 		});
 
 		// Run the controller
@@ -33,7 +41,11 @@
 
 			if (pageTypeArray) {
 				pageTypeArray.forEach(function(fnName) {
-					F.fn.clone(fnName).init();
+					if (hasRun.indexOf(fnName) < 0) {
+						F[fnName].init();
+
+						hasRun.push(fnName);
+					}
 				});
 			}
 		}
