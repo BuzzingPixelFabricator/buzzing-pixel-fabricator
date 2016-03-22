@@ -22,13 +22,20 @@
 				F.fn.autoInit.push(fnName);
 			}
 
-			// Define function set variable storage
+			// Define function set model
 			obj.vars = {};
+			obj.varEvents = {};
 			obj.set = function(varName, varVal) {
 				F.set(varName, varVal, obj);
 			};
-			obj.get = function(varName, defaultVal, obj) {
+			obj.get = function(varName, defaultVal) {
 				return F.get(varName, defaultVal, obj);
+			};
+			obj.on = function(evt, callback) {
+				F.on(evt, callback, obj);
+			};
+			obj.off = function(evt, callback) {
+				F.off(evt, callback, obj);
 			};
 
 			// Create a copy for cloning
