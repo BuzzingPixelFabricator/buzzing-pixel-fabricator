@@ -40,8 +40,31 @@ module.exports = function(grunt) {
 		sourceMaps: projectFile.sourceMaps
 	};
 
+	/**
+	 * Delete files and cache
+	 */
+
 	// Delete compile cache
 	grunt.file.delete(assetsSource + '/coreFAB/compileCache/js/');
+
+	// Delete module files
+	grunt.file.delete(assetsPath + '/modules/');
+
+	// Delete JS files
+	grunt.file.delete(assetsPath + '/js/');
+
+	// Delete font files
+	grunt.file.delete(assetsPath + '/fonts/');
+
+	// Delete CSS files
+	grunt.file.delete(assetsPath + '/css/');
+
+	// Delete images
+	grunt.file.delete(assetsPath + '/img/');
+
+	/**
+	 * Delete and clean up various files for re-copying/compiling
+	 */
 
 	// Configure additional watch files
 	conf.bsFiles.src = watch.concat(conf.bsFiles.src);
@@ -51,7 +74,10 @@ module.exports = function(grunt) {
 		conf.bsOptions.open = false;
 	}
 
-	// Configure less files
+	/**
+	 * Configure CSS
+	 */
+
 	conf.lessFiles[assetsPath + '/css/style.min.css'] = [
 		assetsSource + '/coreFAB/css/fab.less'
 	];
@@ -71,7 +97,10 @@ module.exports = function(grunt) {
 		}
 	}
 
-	// Configure JS files
+	/**
+	 * Configure JS
+	 */
+
 	conf.jsFiles[assetsPath + '/js/script.min.js'] = [];
 
 	if (projectFile.jsBuildBefore.length) {
@@ -131,6 +160,24 @@ module.exports = function(grunt) {
 		}
 	}
 
+	// Copy JS lib
+	grunt.file.expand(assetsSource + '/js/lib/**/*').forEach(function(i) {
+		var file = i.split('/');
+		var newFile = assetsPath + '/';
+
+		if (grunt.file.isFile(i)) {
+			file.shift();
+			newFile += file.join('/');
+
+			// Copy the file into place
+			grunt.file.copy(i, newFile);
+		}
+	});
+
+	/**
+	 * Configure modules
+	 */
+
 	// Add module compile
 	grunt.file.expand(assetsSource + '/modules/compile/*').forEach(function(i) {
 		var moduleName = i.split('/').pop();
@@ -147,6 +194,61 @@ module.exports = function(grunt) {
 		conf.jsFiles[assetsPath + '/modules/' + moduleName + '.min.js'].push(i + '/js/config.js');
 		conf.jsFiles[assetsPath + '/modules/' + moduleName + '.min.js'].push(i + '/js/*.js');
 	});
+
+	/**
+	 * Copy fonts
+	 */
+
+	grunt.file.expand(assetsSource + '/fonts/**/*').forEach(function(i) {
+		var file = i.split('/');
+		var newFile = assetsPath + '/';
+
+		if (grunt.file.isFile(i)) {
+			file.shift();
+			newFile += file.join('/');
+
+			// Copy the file into place
+			grunt.file.copy(i, newFile);
+		}
+	});
+
+	/**
+	 * Copy CSS lib
+	 */
+
+	grunt.file.expand(assetsSource + '/css/lib/**/*').forEach(function(i) {
+		var file = i.split('/');
+		var newFile = assetsPath + '/';
+
+		if (grunt.file.isFile(i)) {
+			file.shift();
+			newFile += file.join('/');
+
+			// Copy the file into place
+			grunt.file.copy(i, newFile);
+		}
+	});
+
+	/**
+	 * Copy images
+	 */
+
+	grunt.file.expand(assetsSource + '/img/**/*').forEach(function(i) {
+		var file = i.split('/');
+		var newFile = assetsPath + '/';
+
+		if (grunt.file.isFile(i)) {
+			file.shift();
+			newFile += file.join('/');
+
+			// Copy the file into place
+			grunt.file.copy(i, newFile);
+		}
+	});
+
+	/**
+	 * Configure version file
+	 */
 
 	// Write version file
 	grunt.file.write(assetsSource + '/coreFAB/compileCache/js/version.js', '$(function() {window.FAB = window.FAB || {};window.FAB.version = "' + packageFile.version + '";});');
@@ -219,6 +321,21 @@ module.exports = function(grunt) {
 			}
 		},
 		watch: {
+			grunt: {
+				files: [
+					'Gruntfile.js',
+					'<%= conf.assetsSource %>/fonts/**/*',
+					'<%= conf.assetsSource %>/img/**/*',
+					'<%= conf.assetsSource %>/modules/buiild/*',
+					'<%= conf.assetsSource %>/modules/compile/*'
+				],
+				tasks: [
+					'less',
+					'notify:less',
+					'uglify',
+					'notify:uglify'
+				]
+			},
 			styles: {
 				files: [
 					'<%= conf.assetsSource %>/css/**/*.less',
