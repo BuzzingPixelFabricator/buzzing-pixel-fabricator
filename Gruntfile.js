@@ -98,6 +98,7 @@ module.exports = function(grunt) {
 
 	conf.jsFiles[assetsPath + '/js/script.min.js'].push(
 		assetsSource + '/js/build/**/*.js',
+		assetsSource + '/modules/build/**/js/config.js',
 		assetsSource + '/modules/build/**/js/**/*.js'
 	);
 
@@ -135,7 +136,10 @@ module.exports = function(grunt) {
 		var moduleName = i.split('/').pop();
 
 		conf.lessFiles[assetsPath + '/modules/' + moduleName + '.min.css'] = i + '/css/module.less';
-		conf.jsFiles[assetsPath + '/modules/' + moduleName + '.min.js'] = i + '/js/*.js';
+
+		conf.jsFiles[assetsPath + '/modules/' + moduleName + '.min.js'] = [];
+		conf.jsFiles[assetsPath + '/modules/' + moduleName + '.min.js'].push(i + '/js/config.js');
+		conf.jsFiles[assetsPath + '/modules/' + moduleName + '.min.js'].push(i + '/js/*.js');
 	});
 
 	// Write version file
