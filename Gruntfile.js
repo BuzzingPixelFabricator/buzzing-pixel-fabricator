@@ -135,6 +135,12 @@ module.exports = function(grunt) {
 	grunt.file.expand(assetsSource + '/modules/compile/*').forEach(function(i) {
 		var moduleName = i.split('/').pop();
 
+		// Copy the module file into place
+		grunt.file.copy(
+			assetsSource + '/coreFAB/css/module.less',
+			i + '/css/module.less'
+		);
+
 		conf.lessFiles[assetsPath + '/modules/' + moduleName + '.min.css'] = i + '/css/module.less';
 
 		conf.jsFiles[assetsPath + '/modules/' + moduleName + '.min.js'] = [];
