@@ -4,11 +4,11 @@
 
 // Import Variables
 @import (reference) 'base/variables';
-@import (reference) 'config/variables/**/*.less';
+@import (reference) '../../css/config/variables/**/*.less';
 
 // Import Mixins
 @import (reference) 'base/mixins.less';
-@import (reference) 'config/mixins/**/*.less';
+@import (reference) '../../css/config/mixins/**/*.less';
 
 // Import CSS
 @import (reference) 'base/utilities';
@@ -17,10 +17,10 @@
 @import (reference) 'base/tables';
 
 // Import lib
-@import 'lib/**/*';
+@import '../../css/lib/**/*';
 
 // Import build
-@import 'build/**/*';
+@import '../../css/build/**/*';
 
 // Utilities
 .fab-utilites();
@@ -40,14 +40,14 @@
 .fab-tables();
 
 // Base styling
-@import 'breakpoints/1-base';
+@import '../../css/breakpoints/1-base';
 
 // Base styling from build modules
 .moduleBase () {
-	@import (multiple, reference) '../modules/build/**/css/variables/**/*.less';
-	@import (multiple, reference) '../modules/build/**/css/mixins/**/*.less';
-	@import '../modules/build/**/css/lib/**/*';
-	@import '../modules/build/**/css/1-base';
+	@import (multiple, reference) '../../../modules/build/**/css/variables/**/*.less';
+	@import (multiple, reference) '../../../modules/build/**/css/mixins/**/*.less';
+	@import '../../../modules/build/**/css/lib/**/*';
+	@import '../../../modules/build/**/css/1-base';
 }
 .moduleBase();
 
@@ -72,13 +72,13 @@
 		}
 
 		// Mobile landscape styling
-		@import 'breakpoints/2-mobileLandscape';
+		@import '../../css/breakpoints/2-mobileLandscape';
 
 		// Mobile landscape styling from build modules
 		.moduleBase2 () {
-			@import (multiple, reference) '../modules/build/**/css/variables/**/*.less';
-			@import (multiple, reference) '../modules/build/**/css/mixins/**/*.less';
-			@import '../modules/build/**/css/2-mobileLandscape';
+			@import (multiple, reference) '../../../modules/build/**/css/variables/**/*.less';
+			@import (multiple, reference) '../../../modules/build/**/css/mixins/**/*.less';
+			@import '../../../modules/build/**/css/2-mobileLandscape';
 		}
 		.moduleBase2();
 	}
@@ -91,13 +91,13 @@
 		}
 
 		// Tablet portrait styling
-		@import 'breakpoints/3-tabletPortrait';
+		@import '../../css/breakpoints/3-tabletPortrait';
 
 		// Tablet portrait styling from build modules
 		.moduleBase3 () {
-			@import (multiple, reference) '../modules/build/**/css/variables/**/*.less';
-			@import (multiple, reference) '../modules/build/**/css/mixins/**/*.less';
-			@import '../modules/build/**/css/3-tabletPortrait';
+			@import (multiple, reference) '../../../modules/build/**/css/variables/**/*.less';
+			@import (multiple, reference) '../../../modules/build/**/css/mixins/**/*.less';
+			@import '../../../modules/build/**/css/3-tabletPortrait';
 		}
 		.moduleBase3();
 	}
@@ -110,13 +110,13 @@
 		}
 
 		// Desktop small styling
-		@import 'breakpoints/4-desktopSmall';
+		@import '../../css/breakpoints/4-desktopSmall';
 
 		// Desktop small styling from build modules
 		.moduleBase4 () {
-			@import (multiple, reference) '../modules/build/**/css/variables/**/*.less';
-			@import (multiple, reference) '../modules/build/**/css/mixins/**/*.less';
-			@import '../modules/build/**/css/4-desktopSmall';
+			@import (multiple, reference) '../../../modules/build/**/css/variables/**/*.less';
+			@import (multiple, reference) '../../../modules/build/**/css/mixins/**/*.less';
+			@import '../../../modules/build/**/css/4-desktopSmall';
 		}
 		.moduleBase4();
 	}
@@ -129,13 +129,13 @@
 		}
 
 		// Desktop medium styling
-		@import 'breakpoints/5-desktopMedium';
+		@import '../../css/breakpoints/5-desktopMedium';
 
 		// Desktop medium styling from build modules
 		.moduleBase5 () {
-			@import (multiple, reference) '../modules/build/**/css/variables/**/*.less';
-			@import (multiple, reference) '../modules/build/**/css/mixins/**/*.less';
-			@import '../modules/build/**/css/5-desktopMedium';
+			@import (multiple, reference) '../../../modules/build/**/css/variables/**/*.less';
+			@import (multiple, reference) '../../../modules/build/**/css/mixins/**/*.less';
+			@import '../../../modules/build/**/css/5-desktopMedium';
 		}
 		.moduleBase5();
 	}
@@ -148,13 +148,13 @@
 		}
 
 		// Desktop large styling
-		@import 'breakpoints/6-desktopLarge';
+		@import '../../css/breakpoints/6-desktopLarge';
 
 		// Desktop large styling from build modules
 		.moduleBase6 () {
-			@import (multiple, reference) '../modules/build/**/css/variables/**/*.less';
-			@import (multiple, reference) '../modules/build/**/css/mixins/**/*.less';
-			@import '../modules/build/**/css/6-desktopLarge';
+			@import (multiple, reference) '../../../modules/build/**/css/variables/**/*.less';
+			@import (multiple, reference) '../../../modules/build/**/css/mixins/**/*.less';
+			@import '../../../modules/build/**/css/6-desktopLarge';
 		}
 		.moduleBase6();
 	}

@@ -41,7 +41,7 @@ module.exports = function(grunt) {
 	};
 
 	// Delete compile cache
-	grunt.file.delete(assetsSource + '/compileCache/js/');
+	grunt.file.delete(assetsSource + '/coreFAB/compileCache/js/');
 
 	// Configure additional watch files
 	conf.bsFiles.src = watch.concat(conf.bsFiles.src);
@@ -53,7 +53,7 @@ module.exports = function(grunt) {
 
 	// Configure less files
 	conf.lessFiles[assetsPath + '/css/style.min.css'] = [
-		assetsSource + '/css/fab.less'
+		assetsSource + '/coreFAB/css/fab.less'
 	];
 
 	if (projectFile.lessBuild.length) {
@@ -84,8 +84,8 @@ module.exports = function(grunt) {
 
 	if (enabledJsComponents.indexOf('base') > -1) {
 		conf.jsFiles[assetsPath + '/js/script.min.js'].push(
-			assetsSource + '/js/fab.js',
-			assetsSource + '/js/base/**/*.js',
+			assetsSource + '/coreFAB/js/fab.js',
+			assetsSource + '/coreFAB/js/base/**/*.js',
 			assetsSource + '/js/controller.js'
 		);
 	}
@@ -112,7 +112,7 @@ module.exports = function(grunt) {
 
 	if (enabledJsComponents.indexOf('base') > -1) {
 		conf.jsFiles[assetsPath + '/js/script.min.js'].push(
-			assetsSource + '/js/ready.js'
+			assetsSource + '/coreFAB/js/ready.js'
 		);
 	}
 
@@ -143,11 +143,11 @@ module.exports = function(grunt) {
 	});
 
 	// Write version file
-	grunt.file.write(assetsSource + '/compileCache/js/version.js', '$(function() {window.FAB = window.FAB || {};window.FAB.version = "' + packageFile.version + '";});');
+	grunt.file.write(assetsSource + '/coreFAB/compileCache/js/version.js', '$(function() {window.FAB = window.FAB || {};window.FAB.version = "' + packageFile.version + '";});');
 
 	// Include version file
 	conf.jsFiles[assetsPath + '/js/script.min.js'].push(
-		assetsSource + '/compileCache/js/version.js'
+		assetsSource + '/coreFAB/compileCache/js/version.js'
 	);
 
 	grunt.initConfig({

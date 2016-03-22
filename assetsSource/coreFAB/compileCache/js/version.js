@@ -1,0 +1,1 @@
+$(function() {window.FAB = window.FAB || {};window.FAB.version = "0.9.0";});
