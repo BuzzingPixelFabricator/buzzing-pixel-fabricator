@@ -38,7 +38,7 @@ prepros.json
 	# System
 #------------------------------------
 
-compileCache/*
+assetsSource/coreFAB/compileCache/*
 .cache
 .DS_Store
 .tmp
