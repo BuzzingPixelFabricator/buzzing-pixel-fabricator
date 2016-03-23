@@ -178,21 +178,100 @@ module.exports = function(grunt) {
 	 * Configure modules
 	 */
 
+	// Copy build modules lib, font, and image files
+	grunt.file.expand(assetsSource + '/modules/build/*').forEach(function(i) {
+		var moduleName = i.split('/').pop();
+
+		// Copy lib CSS files
+		grunt.file.expand(i + '/css/lib/**/*').forEach(function(file) {
+			var fileName = file.replace(i, '');
+
+			if (grunt.file.isFile(file)) {
+				grunt.file.copy(
+					file,
+					assetsPath + '/modules/' + moduleName + fileName
+				);
+			}
+		});
+
+		// Copy image files
+		grunt.file.expand(i + '/img/**/*').forEach(function(file) {
+			var fileName = file.replace(i, '');
+
+			if (grunt.file.isFile(file)) {
+				grunt.file.copy(
+					file,
+					assetsPath + '/modules/' + moduleName + fileName
+				);
+			}
+		});
+
+		// Copy font files
+		grunt.file.expand(i + '/font/**/*').forEach(function(file) {
+			var fileName = file.replace(i, '');
+
+			if (grunt.file.isFile(file)) {
+				grunt.file.copy(
+					file,
+					assetsPath + '/modules/' + moduleName + fileName
+				);
+			}
+		});
+	});
+
 	// Add module compile
 	grunt.file.expand(assetsSource + '/modules/compile/*').forEach(function(i) {
 		var moduleName = i.split('/').pop();
 
-		// Copy the module file into place
+		// Copy the module primary less file into place
 		grunt.file.copy(
 			assetsSource + '/coreFAB/css/module.less',
 			i + '/css/module.less'
 		);
 
-		conf.lessFiles[assetsPath + '/modules/' + moduleName + '.min.css'] = i + '/css/module.less';
+		// Configure module Less
+		conf.lessFiles[assetsPath + '/modules/' + moduleName + '/css/style.min.css'] = i + '/css/module.less';
 
-		conf.jsFiles[assetsPath + '/modules/' + moduleName + '.min.js'] = [];
-		conf.jsFiles[assetsPath + '/modules/' + moduleName + '.min.js'].push(i + '/js/config.js');
-		conf.jsFiles[assetsPath + '/modules/' + moduleName + '.min.js'].push(i + '/js/*.js');
+		// Configure module JS
+		conf.jsFiles[assetsPath + '/modules/' + moduleName + '/js/script.min.js'] = [];
+		conf.jsFiles[assetsPath + '/modules/' + moduleName + '/js/script.min.js'].push(i + '/js/config.js');
+		conf.jsFiles[assetsPath + '/modules/' + moduleName + '/js/script.min.js'].push(i + '/js/**/*.js');
+
+		// Copy lib CSS files
+		grunt.file.expand(i + '/css/lib/**/*').forEach(function(file) {
+			var fileName = file.replace(i, '');
+
+			if (grunt.file.isFile(file)) {
+				grunt.file.copy(
+					file,
+					assetsPath + '/modules/' + moduleName + fileName
+				);
+			}
+		});
+
+		// Copy image files
+		grunt.file.expand(i + '/img/**/*').forEach(function(file) {
+			var fileName = file.replace(i, '');
+
+			if (grunt.file.isFile(file)) {
+				grunt.file.copy(
+					file,
+					assetsPath + '/modules/' + moduleName + fileName
+				);
+			}
+		});
+
+		// Copy font files
+		grunt.file.expand(i + '/font/**/*').forEach(function(file) {
+			var fileName = file.replace(i, '');
+
+			if (grunt.file.isFile(file)) {
+				grunt.file.copy(
+					file,
+					assetsPath + '/modules/' + moduleName + fileName
+				);
+			}
+		});
 	});
 
 	/**

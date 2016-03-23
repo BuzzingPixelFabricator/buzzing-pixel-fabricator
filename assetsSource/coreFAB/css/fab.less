@@ -16,9 +16,6 @@
 @import (reference) 'base/formsAndButtons';
 @import (reference) 'base/tables';
 
-// Import lib
-@import '../../css/lib/**/*';
-
 // Import build
 @import '../../css/build/**/*';
 
@@ -46,7 +43,6 @@
 .moduleBase () {
 	@import (multiple, reference) '../../../modules/build/**/css/variables/**/*.less';
 	@import (multiple, reference) '../../../modules/build/**/css/mixins/**/*.less';
-	@import '../../../modules/build/**/css/lib/**/*';
 	@import '../../../modules/build/**/css/1-base';
 }
 .moduleBase();
