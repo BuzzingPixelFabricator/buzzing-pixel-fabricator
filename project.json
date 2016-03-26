@@ -21,7 +21,6 @@
 	},
 	"sourceMaps": true,
 	"enabledJsComponents": [
-		"base",
-		"lib"
+		"base"
 	]
 }

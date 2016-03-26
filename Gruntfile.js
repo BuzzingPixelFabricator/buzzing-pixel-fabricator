@@ -119,12 +119,6 @@ module.exports = function(grunt) {
 		);
 	}
 
-	if (enabledJsComponents.indexOf('lib') > -1) {
-		conf.jsFiles[assetsPath + '/js/script.min.js'].push(
-			assetsSource + '/js/lib/**/*.js'
-		);
-	}
-
 	conf.jsFiles[assetsPath + '/js/script.min.js'].push(
 		assetsSource + '/js/build/**/*.js',
 		assetsSource + '/modules/build/**/js/config.js',
