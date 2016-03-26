@@ -411,6 +411,7 @@ module.exports = function(grunt) {
 			},
 			styles: {
 				files: [
+					'<%= conf.assetsSource %>/coreFAB/css/**/*',
 					'<%= conf.assetsSource %>/css/**/*.less',
 					'<%= conf.assetsSource %>/css/**/*.css',
 					'<%= conf.assetsSource %>/modules/build/**/css/**/*.less',
@@ -428,6 +429,7 @@ module.exports = function(grunt) {
 			},
 			javascript: {
 				files: [
+					'<%= conf.assetsSource %>/coreFAB/js/**/*',
 					'<%= conf.assetsSource %>/js/**/*.js',
 					'<%= conf.assetsSource %>/modules/build/**/js/**/*.js',
 					'<%= conf.assetsSource %>/modules/compile/**/js/**/*.js'
