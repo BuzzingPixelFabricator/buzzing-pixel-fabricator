@@ -1,4 +1,4 @@
-# Fabricator 0.8.0
+# Fabricator 0.10.1
 
 This is the BuzzingPixel front-end build process and helper functions for building websites. You can read the documentation here:
 
