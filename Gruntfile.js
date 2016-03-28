@@ -375,9 +375,8 @@ module.exports = function(grunt) {
 		},
 		jshint: {
 			files: [
-				'<%= conf.assetsSource %>/js/**/*.js',
-				'<%= conf.assetsSource %>/js/base/**/*.js',
-				'<%= conf.assetsSource %>/js/build/**/*.js'
+				'<%= conf.assetsSource %>/js/build/**/*.js',
+				'<%= conf.assetsSource %>/js/*.js'
 			],
 			options: {
 				jshintrc: true
@@ -385,9 +384,8 @@ module.exports = function(grunt) {
 		},
 		jscs: {
 			src: [
-				'<%= conf.assetsSource %>/js/**/*.js',
-				'<%= conf.assetsSource %>/js/base/**/*.js',
-				'<%= conf.assetsSource %>/js/build/**/*.js'
+				'<%= conf.assetsSource %>/js/build/**/*.js',
+				'<%= conf.assetsSource %>/js/*.js'
 			],
 			options: {
 				config: '.jscs.json'
