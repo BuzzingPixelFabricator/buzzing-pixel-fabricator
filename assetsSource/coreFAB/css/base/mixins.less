@@ -236,6 +236,7 @@
 	@endAlpha: rgba(0, 0, 0, @end);
 	@deg: unit(@angle, deg);
 	@revDeg: unit(mod((450 - @angle), 360), deg);
+	background-color: #000;
 	.background('-webkit-linear-gradient(@{revDeg}, @{startAlpha}, @{endAlpha})');
 	.background('linear-gradient(@{deg}, @{startAlpha}, @{endAlpha})');
 }
@@ -244,6 +245,7 @@
 	@endAlpha: rgba(255, 255, 255, @end);
 	@deg: unit(@angle, deg);
 	@revDeg: unit(mod((450 - @angle), 360), deg);
+	background-color: #fff;
 	.background('-webkit-linear-gradient(@{revDeg}, @{startAlpha}, @{endAlpha})');
 	.background('linear-gradient(@{deg}, @{startAlpha}, @{endAlpha})');
 }
