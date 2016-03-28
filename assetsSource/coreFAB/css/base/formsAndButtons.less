@@ -106,6 +106,41 @@
 		.check () when(@buttonTransitionEnabled = true) {
 			.transition(all);
 		}
+		&--colored {
+			.background(@coloredButtonBackground);
+			.border-color(@coloredButtonBorderColor);
+			.color(@coloredButtonColor);
+			&:hover {
+				.border-color(@coloredButtonBackgroundHover);
+				.background(@coloredButtonBackgroundHover);
+				.color(@coloredButtonColor);
+			}
+			&:active {
+				.background(@coloredButtonBackgroundActive);
+			}
+			&.button--outlined {
+				.background(none);
+				.background-color(none);
+				.border-color(@coloredButtonBackground);
+				.color(@coloredButtonBackground);
+				&:hover {
+					.background(@coloredButtonBackground);
+					.border-color(@coloredButtonBackground);
+					.color(@buttonColor);
+				}
+				&:disabled,
+				&.button--disabled {
+					.background(lighten(@disabledButtonBackground, 5%));
+					.border-color(@disabledButtonBackground);
+					.color(@disabledButtonColor);
+					&:hover {
+						.background(lighten(@disabledButtonBackground, 5%));
+						.border-color(@disabledButtonBackground);
+						.color(@disabledButtonColor);
+					}
+				}
+			}
+		}
 		.check();
 		&--light {
 			.background(lighten(@buttonBackground, 38%));
@@ -119,8 +154,11 @@
 		&--outlined {
 			.background(none);
 			.border-color(@buttonBackground);
+			.border-style(solid);
+			.border-width(1px);
 			.color(@buttonBackground);
 			&:hover {
+				.border-color(@buttonBackground);
 				.background(@buttonBackground);
 				.color(@buttonColor);
 			}
@@ -128,41 +166,11 @@
 			&--disabled {
 				.background(lighten(@disabledButtonBackground, 5%));
 				.border-color(lighten(@buttonBackground, 20%));
+				.color(@disabledButtonColor);
 				&:hover {
-					.background(lighten(@disabledButtonBackground, 5%));
-					.border-color(lighten(@buttonBackground, 20%));
-				}
-			}
-		}
-		&--colored {
-			.background(@coloredButtonBackground);
-			.border-color(@coloredButtonBorderColor);
-			.color(@coloredButtonColor);
-			&:hover {
-				.border-color(@coloredButtonBackgroundHover);
-				.background(@coloredButtonBackgroundHover);
-				.color(@coloredButtonColor);
-			}
-			&:active {
-				.background(@coloredButtonBackgroundActive);
-			}
-			&--outlined {
-				.background(none);
-				.border-color(@coloredButtonBackground);
-				.color(@coloredButtonBackground);
-				&:hover {
-					.background(@coloredButtonBackground);
-					.color(@buttonColor);
-				}
-				&:disabled,
-				&--disabled {
 					.background(lighten(@disabledButtonBackground, 5%));
 					.border-color(lighten(@buttonBackground, 20%));
 					.color(@disabledButtonColor);
-					&:hover {
-						.background(lighten(@disabledButtonBackground, 5%));
-						.border-color(lighten(@buttonBackground, 20%));
-					}
 				}
 			}
 		}
