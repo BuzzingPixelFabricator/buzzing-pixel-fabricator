@@ -15,7 +15,7 @@
 	"latedef": true,
 	"loopfunc": true,
 	"maxdepth": 5,
-	"maxparams": 4,
+	"maxparams": false,
 	"nonbsp": true,
 	"nonew": true,
 	"predef": {
