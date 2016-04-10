@@ -34,8 +34,8 @@
 			obj.on = function(evt, callback) {
 				F.on(evt, callback, obj);
 			};
-			obj.off = function(evt, callback) {
-				F.off(evt, callback, obj);
+			obj.off = function(evt) {
+				F.off(evt, obj);
 			};
 
 			// Create a copy for cloning

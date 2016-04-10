@@ -160,7 +160,7 @@
 			var namespace;
 			var temp;
 
-			// Determin obj storage to set event on
+			// Determine obj storage to set event on
 			obj = obj || F;
 
 			// Get event namespace if it exists
@@ -172,7 +172,9 @@
 			event = temp[0];
 			key = temp[1] || 'global';
 
-			delete obj.varEvents[key][namespace];
+			if (obj.varEvents[key] && obj.varEvents[key][namespace]) {
+				delete obj.varEvents[key][namespace];
+			}
 		};
 
 		// Set run variables from DOM
