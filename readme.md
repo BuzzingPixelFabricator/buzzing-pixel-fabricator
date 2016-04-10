@@ -1,4 +1,4 @@
-# Fabricator 0.10.1
+# Fabricator Lightweight JS/CSS build process and Javascript framework
 
 This is the BuzzingPixel front-end build process and helper functions for building websites. You can read the documentation here:
 
