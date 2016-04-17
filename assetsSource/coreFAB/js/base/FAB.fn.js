@@ -28,6 +28,9 @@
 			obj.set = function(varName, varVal) {
 				F.set(varName, varVal, obj);
 			};
+			obj.triggerChange = function(varName) {
+				F.triggerChange(varName, obj);
+			};
 			obj.get = function(varName, defaultVal) {
 				return F.get(varName, defaultVal, obj);
 			};
