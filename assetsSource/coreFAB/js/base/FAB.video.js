@@ -20,7 +20,7 @@
 		h264: 'video/mp4',
 		webm: 'video/webm',
 		ogg: 'video/ogg'
-	}
+	};
 
 	/**
 	 * Run check
