@@ -3,6 +3,10 @@
 /*============================================================================*/
 
 module.exports = function(grunt, vars) {
+	vars.conf.jsMangle = vars.projectFile.jsCompress;
+	vars.conf.jsCompress = vars.projectFile.jsCompress;
+	vars.conf.jsBeautify = ! vars.projectFile.jsCompress;
+
 	grunt.initConfig({
 		conf: vars.conf,
 		projectFile: vars.projectFile,
@@ -40,7 +44,11 @@ module.exports = function(grunt, vars) {
 		uglify: {
 			build: {
 				options: {
-					sourceMap: vars.conf.sourceMaps
+					sourceMap: vars.conf.sourceMaps,
+					mangle: vars.conf.jsMangle,
+					compress: vars.conf.jsCompress,
+					beautify: vars.conf.jsBeautify,
+					sourceMapIncludeSources: true
 				},
 				files: vars.conf.jsFiles
 			}

@@ -19,6 +19,7 @@
 	],
 	"jsFiles": {
 	},
+	"jsCompress": true,
 	"sourceMaps": true,
 	"enabledJsComponents": [
 		"base"
