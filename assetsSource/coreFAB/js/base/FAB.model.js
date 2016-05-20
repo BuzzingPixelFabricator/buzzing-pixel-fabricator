@@ -84,6 +84,28 @@
 		};
 
 		/**
+		 * Method for triggering model change
+		 *
+		 * @param {string} varName - Name of the variable to trigger
+		 * @param {object} [obj] - Object to vars are set on
+		 */
+		F.triggerChange = function(varName, obj) {
+			var initialVal;
+
+			// Set what object storage to get
+			obj = obj || F;
+
+			// Get initial value
+			initialVal = obj.get(varName);
+
+			// Clear value
+			obj.vars[varName] = null;
+
+			// Set the value again to trigger the change
+			obj.set(varName, initialVal);
+		};
+
+		/**
 		 * Method for getting model vars
 		 *
 		 * @param {string} getVar - Name of variable to get
