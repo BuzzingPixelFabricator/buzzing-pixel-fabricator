@@ -3,7 +3,7 @@
 	"root": "public_html",
 	"assets": "assets",
 	"source": "assetsSource",
-	"proxy": false,
+	"proxy": "http://fab.dev",
 	"watch": [
 	],
 	"lessCompress": true,
