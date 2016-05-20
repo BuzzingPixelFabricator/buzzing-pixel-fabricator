@@ -71,7 +71,7 @@ module.exports = function(grunt) {
 	vars = require(buildScripts + '08-versionConfig.js')(grunt, vars);
 
 	// Initialize grunt config
-	vars = require(buildScripts + '09-initConfig.js')(grunt, vars);
+	require(buildScripts + '09-initConfig.js')(grunt, vars);
 
 	// Load NPM Tasks
 	grunt.loadNpmTasks('grunt-contrib-less');
@@ -91,6 +91,9 @@ module.exports = function(grunt) {
 		'browserSync',
 		'watch'
 	]);
+
+	// Grunt register module task
+	require(buildScripts + '10-createBuildModule.js')(grunt, vars);
 
 	// Register grunt compile task
 	grunt.registerTask('compile', [
