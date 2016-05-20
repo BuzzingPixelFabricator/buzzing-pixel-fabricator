@@ -58,22 +58,18 @@ module.exports = function(grunt) {
 	// Configure JS
 	vars = require(buildScripts + '04-jsConfig.js')(grunt, vars);
 
-	// Configure Build Modules
-	vars = require(buildScripts + '05-buildModuleConfig.js')(grunt, vars);
-
 	// Configure Compile Modules
-	vars = require(buildScripts + '06-compileModuleConfig.js')(grunt, vars);
-
-	// Configure File Copy
-	vars = require(buildScripts + '07-copyFiles.js')(grunt, vars);
+	vars = require(buildScripts + '05-compileModuleConfig.js')(grunt, vars);
 
 	// Configure version file
-	vars = require(buildScripts + '08-versionConfig.js')(grunt, vars);
+	vars = require(buildScripts + '06-versionConfig.js')(grunt, vars);
 
 	// Initialize grunt config
-	require(buildScripts + '09-initConfig.js')(grunt, vars);
+	require(buildScripts + '07-initConfig.js')(grunt, vars);
 
 	// Load NPM Tasks
+	grunt.loadNpmTasks('grunt-contrib-clean');
+	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-less');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-watch');
@@ -84,6 +80,8 @@ module.exports = function(grunt) {
 
 	// Register grunt default task
 	grunt.registerTask('default', [
+		'clean',
+		'copy',
 		'less',
 		'uglify',
 		'notify:less',
@@ -93,10 +91,12 @@ module.exports = function(grunt) {
 	]);
 
 	// Grunt register module task
-	require(buildScripts + '10-createBuildModule.js')(grunt, vars);
+	require(buildScripts + '08-createBuildModule.js')(grunt, vars);
 
 	// Register grunt compile task
 	grunt.registerTask('compile', [
+		'clean',
+		'copy',
 		'less',
 		'uglify'
 	]);

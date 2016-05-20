@@ -50,7 +50,7 @@ module.exports = function(grunt, vars) {
 	vars.conf.jsFiles[vars.assetsPath + '/js/script.min.js'].push(
 		vars.assetsSource + '/js/build/**/*.js',
 		vars.assetsSource + '/modules/build/**/js/config.js',
-		vars.assetsSource + '/modules/build/**/js/**/*.js'
+		vars.assetsSource + '/modules/build/**/js/build/**/*.js'
 	);
 
 	// Check for build files in the project file
