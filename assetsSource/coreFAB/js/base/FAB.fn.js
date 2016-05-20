@@ -5,6 +5,47 @@
 (function(F) {
 	'use strict';
 
+	/**
+	 * Setup a function set's model
+	 *
+	 * @param {object} obj - Function set
+	 * @return {object} - Setup function set
+	 */
+	var setupModel = function(obj) {
+		// Define object vars
+		obj.vars = {};
+
+		// Define object events
+		obj.varEvents = {};
+
+		// Model set function
+		obj.set = function(varName, varVal) {
+			F.set(varName, varVal, obj);
+		};
+
+		// Model triggerChange function
+		obj.triggerChange = function(varName) {
+			F.triggerChange(varName, obj);
+		};
+
+		// Model get function
+		obj.get = function(varName, defaultVal) {
+			return F.get(varName, defaultVal, obj);
+		};
+
+		// Model on function
+		obj.on = function(evt, callback) {
+			F.on(evt, callback, obj);
+		};
+
+		// Model off function
+		obj.off = function(evt) {
+			F.off(evt, obj);
+		};
+
+		return obj;
+	};
+
 	// Define FAB function sets
 	F.fn = {
 		made: {},
@@ -23,23 +64,7 @@
 			}
 
 			// Define function set model
-			obj.vars = {};
-			obj.varEvents = {};
-			obj.set = function(varName, varVal) {
-				F.set(varName, varVal, obj);
-			};
-			obj.triggerChange = function(varName) {
-				F.triggerChange(varName, obj);
-			};
-			obj.get = function(varName, defaultVal) {
-				return F.get(varName, defaultVal, obj);
-			};
-			obj.on = function(evt, callback) {
-				F.on(evt, callback, obj);
-			};
-			obj.off = function(evt) {
-				F.off(evt, obj);
-			};
+			obj = setupModel(obj);
 
 			// Create a copy for cloning
 			F.fn.made[fnName] = $.extend(true, {}, obj);
@@ -58,6 +83,9 @@
 		clone: function(fnName, init) {
 			// Create a copy of the function set
 			var fn = $.extend(true, {}, F.fn.made[fnName]);
+
+			// Define function set model
+			fn = setupModel(fn);
 
 			// Run init with arguments if requested
 			if (init === true) {
