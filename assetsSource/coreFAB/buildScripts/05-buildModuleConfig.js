@@ -42,6 +42,18 @@ module.exports = function(grunt, vars) {
 				);
 			}
 		});
+
+		// Copy other files
+		grunt.file.expand(i + '/files/**/*').forEach(function(file) {
+			var fileName = file.replace(i, '');
+
+			if (grunt.file.isFile(file)) {
+				grunt.file.copy(
+					file,
+					vars.assetsPath + '/modules/' + moduleName + fileName
+				);
+			}
+		});
 	});
 
 	// Return the modified variables
