@@ -19,10 +19,29 @@ module.exports = function(grunt, vars) {
 
 	// Make sure JS components have not been disabled
 	if (vars.enabledJsComponents.indexOf('base') > -1) {
-		// Push core files into primary JS file compile array
+		// Push core FAB file into primary JS file compile array
 		vars.conf.jsFiles[vars.assetsPath + '/js/script.min.js'].push(
-			vars.assetsSource + '/coreFAB/js/fab.js',
-			vars.assetsSource + '/coreFAB/js/base/**/*.js',
+			vars.assetsSource + '/coreFAB/js/fab.js'
+		);
+
+		// Loop through all the core files
+		grunt.file.expand(vars.assetsSource + '/coreFAB/js/base/**/*.js').forEach(function(file) {
+			// Split the file path into an array
+			var fileArray = file.split('/');
+			// Get the filename (last item in the array)
+			var fileName = fileArray[fileArray.length - 1];
+
+			// If the file is not a disabled component, add it to the compile array
+			if (vars.projectFile.disabledJsComponents.indexOf(fileName) < 0) {
+				// Push controller file into primary JS file compile array
+				vars.conf.jsFiles[vars.assetsPath + '/js/script.min.js'].push(
+					file
+				);
+			}
+		});
+
+		// Push controller file into primary JS file compile array
+		vars.conf.jsFiles[vars.assetsPath + '/js/script.min.js'].push(
 			vars.assetsSource + '/js/controller.js'
 		);
 	}

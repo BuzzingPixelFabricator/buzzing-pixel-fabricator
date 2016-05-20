@@ -15,6 +15,7 @@ module.exports = function(grunt) {
 		assetsPath: projectFile.root + '/' + projectFile.assets,
 		assetsSource: assetsSource,
 		enabledJsComponents: projectFile.enabledJsComponents,
+		disabledJsComponents: projectFile.disabledJsComponents,
 		conf: {
 			root: projectFile.root,
 			assetsPath: assetsPath,

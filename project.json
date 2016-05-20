@@ -23,5 +23,7 @@
 	"sourceMaps": true,
 	"enabledJsComponents": [
 		"base"
+	],
+	"disabledJsComponents": [
 	]
 }
