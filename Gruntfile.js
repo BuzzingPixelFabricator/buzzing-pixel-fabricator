@@ -4,12 +4,20 @@
 
 module.exports = function(grunt) {
 	var projectFile = grunt.file.readJSON('project.json');
+	var projectFileOverrides = grunt.file.readJSON('projectOverrides.json');
 	var assetsPath = projectFile.root + '/' + projectFile.assets;
 	var assetsSource = projectFile.source;
 	var buildScripts = './' + assetsSource + '/coreFAB/buildScripts/';
-	var vars = {
+	var vars;
+
+	for (var key in projectFileOverrides) {
+		projectFile[key] = projectFileOverrides[key];
+	}
+
+	vars = {
 		packageFile: grunt.file.readJSON('package.json'),
 		projectFile: projectFile,
+		projectFileOverrides: projectFileOverrides,
 		root: projectFile.root,
 		watch: projectFile.watch,
 		assetsPath: projectFile.root + '/' + projectFile.assets,

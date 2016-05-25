@@ -39,6 +39,7 @@ prepros.json
 #------------------------------------
 
 assetsSource/coreFAB/compileCache/*
+projectOverrides.json
 .cache
 .DS_Store
 .tmp
