@@ -3,6 +3,7 @@
 /*============================================================================*/
 
 module.exports = function(grunt, vars) {
+	vars.conf.downloadUrl = '';
 	vars.conf.jsMangle = vars.projectFile.jsCompress;
 	vars.conf.jsCompress = vars.projectFile.jsCompress;
 	vars.conf.jsBeautify = ! vars.projectFile.jsCompress;
@@ -11,6 +12,48 @@ module.exports = function(grunt, vars) {
 		// Configure vars
 		conf: vars.conf,
 		projectFile: vars.projectFile,
+
+		/**
+		 * Check for updates
+		 */
+		http: {
+			check: {
+				options: {
+					url: 'https://api.github.com/repos/tjdraper/buzzing-pixel-fabricator/releases/latest',
+					headers: {
+						'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'
+					},
+					callback: function(error, response, body) {
+						require(__dirname + '/09-checkForUpdates.js')(grunt, vars, body);
+					}
+				}
+			}
+		},
+
+		/**
+		 * Download update
+		 */
+		curl: {
+			downloadUpdate: {
+				src: [{
+					url: '<%= conf.latestZipballUrl %>',
+					headers: {
+						'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'
+					}
+				}],
+				dest: '<%= conf.assetsSource %>/coreFAB/compileCache/release.zip'
+			}
+		},
+
+		/**
+		 * Unzip the update
+		 */
+		unzip: {
+			update: {
+				src: '<%= conf.assetsSource %>/coreFAB/compileCache/release.zip',
+				dest: 'FABRELEASE'
+			}
+		},
 
 		/**
 		 * Browser Sync

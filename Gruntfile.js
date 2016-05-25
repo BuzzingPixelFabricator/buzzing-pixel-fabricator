@@ -3,17 +3,41 @@
 /*============================================================================*/
 
 module.exports = function(grunt) {
+	var key;
+
+	// Get user project file
 	var projectFile = grunt.file.readJSON('project.json');
+
+	// Get project file overrides
 	var projectFileOverrides = grunt.file.readJSON('projectOverrides.json');
+
+	// Set the assets path
 	var assetsPath = projectFile.root + '/' + projectFile.assets;
+
+	// Set the assets source
 	var assetsSource = projectFile.source;
+
+	// Get base project file
+	var baseProjectFile = grunt.file.readJSON(assetsSource + '/coreFAB/project.json');
+
+	// Set buildScripts source
 	var buildScripts = './' + assetsSource + '/coreFAB/buildScripts/';
+
+	// Create vars variable
 	var vars;
 
-	for (var key in projectFileOverrides) {
+	// Loop through keys in base project file and make sure they are set
+	for (key in baseProjectFile) {
+		projectFile[key] = projectFile[key] || baseProjectFile[key];
+	}
+
+	// Loop through keys in the projectFileOverrides
+	for (key in projectFileOverrides) {
+		// Override anything in the project file
 		projectFile[key] = projectFileOverrides[key];
 	}
 
+	// Set vars
 	vars = {
 		packageFile: grunt.file.readJSON('package.json'),
 		projectFile: projectFile,
@@ -82,9 +106,12 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
+	grunt.loadNpmTasks('grunt-curl');
+	grunt.loadNpmTasks('grunt-http');
 	grunt.loadNpmTasks('grunt-jscs');
 	grunt.loadNpmTasks('grunt-notify');
 	grunt.loadNpmTasks('grunt-browser-sync');
+	grunt.loadNpmTasks('grunt-zip');
 
 	// Register grunt default task
 	grunt.registerTask('default', [
@@ -98,14 +125,28 @@ module.exports = function(grunt) {
 		'watch'
 	]);
 
-	// Grunt register module task
-	require(buildScripts + '08-createBuildModule.js')(grunt, vars);
-
 	// Register grunt compile task
 	grunt.registerTask('compile', [
 		'clean',
 		'copy',
 		'less',
 		'uglify'
+	]);
+
+	// Register module task
+	require(buildScripts + '08-createBuildModule.js')(grunt, vars);
+
+	// Register check task
+	grunt.registerTask('check', [
+		'http:check'
+	]);
+
+	// Register check task
+	require(buildScripts + '10-update.js')(grunt, vars);
+	grunt.registerTask('update', [
+		'http:check',
+		'curl:downloadUpdate',
+		'unzip:update',
+		'updateFiles'
 	]);
 };
