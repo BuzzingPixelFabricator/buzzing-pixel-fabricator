@@ -7,7 +7,9 @@ module.exports = function(grunt) {
 	grunt.fabInitConfig.jshint = {
 		files: [
 			grunt.fabConfig.source + '/js/**/*.js',
-			'!' + grunt.fabConfig.source + '/js/lib/**/*.js'
+			'!' + grunt.fabConfig.source + '/js/lib/**/*.js',
+			grunt.fabConfig.source + '/modules/*/*/js/**/*.js',
+			'!' + grunt.fabConfig.source + '/modules/*/*/js/lib/**/*.js'
 		],
 		options: {
 			jshintrc: true

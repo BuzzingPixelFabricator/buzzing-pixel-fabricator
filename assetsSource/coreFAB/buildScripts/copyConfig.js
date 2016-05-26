@@ -50,7 +50,7 @@ module.exports = function(grunt) {
 				expand: true,
 				cwd: grunt.fabConfig.source + '/modules/build/',
 				src: '**/js/lib/**',
-				dest: grunt.fabConfig.assetes + '/modules/'
+				dest: grunt.fabConfig.assets + '/modules/'
 			}]
 		},
 		moduleBuildImages: {
@@ -114,7 +114,7 @@ module.exports = function(grunt) {
 				expand: true,
 				cwd: grunt.fabConfig.source + '/modules/compile/',
 				src: '**/files/**',
-				dest: grunt.fabConfig.source + '/modules/'
+				dest: grunt.fabConfig.assets + '/modules/'
 			}]
 		}
 	};

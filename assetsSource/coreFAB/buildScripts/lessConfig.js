@@ -30,6 +30,14 @@ module.exports = function(grunt) {
 		}
 	}
 
+	// Add module compile files
+	grunt.file.expand(grunt.fabConfig.source + '/modules/compile/*').forEach(function(i) {
+		var moduleName = i.split('/').pop();
+
+		// Configure module Less
+		lessFiles[grunt.fabConfig.assets + '/modules/' + moduleName + '/css/style.min.css'] = i + '/css/module.less';
+	});
+
 	// Set grunt config for less
 	grunt.fabInitConfig.less = {
 		development: {

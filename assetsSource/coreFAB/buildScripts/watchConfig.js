@@ -6,11 +6,13 @@ module.exports = function(grunt) {
 	var key;
 	var lessFiles = [
 		grunt.fabConfig.source + '/coreFAB/css/**/*',
-		grunt.fabConfig.source + '/css/**/*'
+		grunt.fabConfig.source + '/css/**/*',
+		grunt.fabConfig.source + '/modules/*/*/css/**/*'
 	];
 	var jsFiles = [
 		grunt.fabConfig.source + '/coreFAB/js/**/*',
-		grunt.fabConfig.source + '/js/**/*'
+		grunt.fabConfig.source + '/js/**/*',
+		grunt.fabConfig.source + '/modules/*/*/js/**/*'
 	];
 
 	// Add any less build files from project file

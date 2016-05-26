@@ -63,7 +63,10 @@ module.exports = function(grunt) {
 
 	// Add all other module files
 	jsFiles[primaryJsFile].push(
-		grunt.fabConfig.source + '/modules/build/**/js/config.js'
+		grunt.fabConfig.source + '/modules/build/**/js/*.js'
+	);
+	jsFiles[primaryJsFile].push(
+		grunt.fabConfig.source + '/modules/build/**/js/build/**/*.js'
 	);
 	jsFiles[primaryJsFile].push(
 		'!' + grunt.fabConfig.source + '/modules/build/**/js/lib/**/*'
@@ -109,11 +112,25 @@ module.exports = function(grunt) {
 		grunt.fabConfig.source + '/coreFAB/compileCache/js/version.js'
 	);
 
+	// Add module compile files
+	grunt.file.expand(grunt.fabConfig.source + '/modules/compile/*').forEach(function(i) {
+		var moduleName = i.split('/').pop();
+		var fileName = grunt.fabConfig.assets + '/modules/' + moduleName + '/js/script.min.js';
+
+		// Configure module Less
+		jsFiles[fileName] = [
+			i + '/js/config.js',
+			i + '/js/*.js',
+			i + '/js/build/**/*.js',
+			'!' + i + 'js/lib/**/*'
+		];
+	});
+
 	// Set grunt config for javascript
 	grunt.fabInitConfig.uglify = {
 		build: {
 			options: {
-				sourceMaps: grunt.fabConfig.sourceMaps,
+				sourceMap: grunt.fabConfig.sourceMaps,
 				mangle: grunt.fabConfig.jsCompress,
 				compress: grunt.fabConfig.jsCompress,
 				beautify: ! grunt.fabConfig.jsCompress,
