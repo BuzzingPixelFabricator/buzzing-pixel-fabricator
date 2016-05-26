@@ -1,29 +1,6 @@
 {
 	"about-this-file": "This is your grunt configuration file. All keys are required so do not remove any of them, but you may change their values",
-	"root": "public_html",
-	"assets": "assets",
+	"assets": "public_html/assets",
 	"source": "assetsSource",
-	"proxy": "http://fab.dev",
-	"watch": [
-	],
-	"lessCompress": true,
-	"lessBuild": [
-	],
-	"lessFiles": {
-	},
-	"jsBuildBefore": [
-	],
-	"jsBuild": [
-	],
-	"jsBuildAfter": [
-	],
-	"jsFiles": {
-	},
-	"jsCompress": true,
-	"sourceMaps": true,
-	"enabledJsComponents": [
-		"base"
-	],
-	"disabledJsComponents": [
-	]
+	"proxy": "http://fab.dev"
 }
