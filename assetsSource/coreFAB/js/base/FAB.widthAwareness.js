@@ -7,6 +7,23 @@
 	// Create a timer for watching the window resize
 	var windowResizeTimer = null;
 
+	// Create a variable for default sizes
+	var defaultSizes = [
+		400,
+		500,
+		600,
+		700,
+		800,
+		900,
+		1000,
+		1100,
+		1200,
+		1300,
+		1400,
+		1500,
+		1600
+	];
+
 	/**
 	 * Prep element for add/remove
 	 *
@@ -41,14 +58,12 @@
 		var width = element.$el.outerWidth();
 
 		// Loop through the class settings
-		element.breakPointClasses.forEach(function(obj) {
-			// If the width has exceeded the size threshold, add the class
-			if (width >= obj.size) {
-				element.$el.addClass(obj.className);
-
-			// Otherwise remove it
+		element.sizes.forEach(function(size) {
+			// If width is equal or has exceeded size threshold, add data-element
+			if (width >= size) {
+				element.$el.attr('data-width-' + size, true);
 			} else {
-				element.$el.removeClass(obj.className);
+				element.$el.attr('data-width-' + size, null);
 			}
 		});
 	};
@@ -78,19 +93,20 @@
 		/**
 		 * Add element to watch
 		 *
-		 * @param {object} el DOM or jQuery object
-		 * @param {array} breakPointClasses
+		 * @param {string|object} el - Selector, DOM Object, or jQuery object
+		 * @params {array|num} Sizes
 		 */
-		add: function(el, breakPointClasses) {
+		add: function(el) {
 			// Get the prepped element
 			var $el;
+			var args = arguments;
 
 			if (! el) {
-				throw 'A DOM or jQuery element must be provided';
+				throw 'A DOM or jQuery element, or class selector must be provided';
 			}
 
-			if (! breakPointClasses) {
-				throw 'An array with one or more objects containing a size key and class value must be provided';
+			if (args.length < 2) {
+				throw 'At least 1 size must be provided as the second argument. Addtional size arguments may be provided after the second.';
 			}
 
 			// Prep the element
@@ -106,25 +122,25 @@
 				if (! elements[name]) {
 					elements[name] = {};
 					elements[name].$el = $this;
-					elements[name].breakPointClasses = [];
+					elements[name].sizes = [];
 				}
 
-				// Loop through the breakpoint classes
-				breakPointClasses.forEach(function(i) {
-					// Make sure required properties are present
-					if (! i.size) {
-						throw 'classes object must contain breakpoint size property';
+				// Add sizes to elements array
+				for (var i = 1; i < args.length; i++) {
+					// Check if the argument is an array
+					if (args[i].constructor === Array) {
+						// Loop through the array items
+						args[i].forEach(function(size) {
+							// Push the items into the sizes array
+							elements[name].sizes.push(parseInt(size));
+						});
+					// Otherwise add the argument directly to the sizes array
+					} else {
+						elements[name].sizes.push(parseInt(args[i]));
 					}
+				}
 
-					if (! i.className) {
-						throw 'classes object must contain breakpoint className property';
-					}
-
-					// Push the item into the array
-					elements[name].breakPointClasses.push(i);
-				});
-
-				// Set up triggering element
+				// Set up triggering
 				$this.on('widthAwarenessCheck', function() {
 					updateElement($this);
 				});
@@ -140,7 +156,7 @@
 		/**
 		 * Remove element from watch
 		 *
-		 * @param {object} el DOM or jQuery object
+		 * @param {string|object} el - Selector, DOM Object, or jQuery object
 		 */
 		remove: function(el) {
 			// Get the prepped element
@@ -157,12 +173,76 @@
 					// Remove elements widthawareness trigger
 					elements[name].$el.off('widthAwarenessCheck');
 
+					// Remove all data-width attributes
+					elements[name].sizes.forEach(function(size) {
+						elements[name].$el.attr('data-width-' + size, null);
+					});
+
 					// Delete the element from storage if it's there
 					delete elements[name];
 				}
 			});
+		},
+
+		/**
+		 * Watch a selector
+		 *
+		 * @param {string} sel - Selector
+		 * @params {array|num} Sizes
+		 */
+		watchSelector: function(sel) {
+			// Create a timer variable
+			var timer;
+
+			// Save a reference to self
+			var self = this;
+
+			// Start a var for arguments
+			var sizes = [];
+
+			if (! sel) {
+				throw 'A selector must be provided';
+			}
+
+			if (arguments.length < 2) {
+				throw 'At least 1 size must be provided as the second argument. Addtional size arguments may be provided after the second.';
+			}
+
+			// Loop through all arguments except the first one
+			for (var i = 1; i < arguments.length; i++) {
+				// Check if the argument is an array
+				if (arguments[i].constructor === Array) {
+					// Loop through the array items
+					arguments[i].forEach(function(size) {
+						// Push the items into the sizes array
+						sizes.push(size);
+					});
+				// Otherwise add the argument directly to the sizes array
+				} else {
+					sizes.push(arguments[i]);
+				}
+			}
+
+			// Add the selector
+			self.add(sel, sizes);
+
+			// Watch for new elements with this selector being added
+			document.addEventListener('DOMSubtreeModified', function() {
+				// Clear any previous timeout
+				clearTimeout(timer);
+
+				// Set a new timeout
+				timer = setTimeout(function() {
+					// Add the selector
+					self.add(sel, sizes);
+				}, 250);
+			}, false);
 		}
 	};
+
+	// Add base width awareness to elements with class or data element
+	F.widthAwareness.watchSelector('[data-width-aware="true"]', defaultSizes);
+	F.widthAwareness.watchSelector('.js-width-aware', defaultSizes);
 
 	// Run checks on window resize
 	$W.on('resize', function() {
