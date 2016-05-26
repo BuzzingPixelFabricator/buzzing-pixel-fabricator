@@ -76,8 +76,7 @@ module.exports = function(grunt) {
 				'notify:less'
 			],
 			options: {
-				spawn: false,
-				atBegin: true
+				spawn: false
 			}
 		},
 		javascript: {
@@ -87,8 +86,7 @@ module.exports = function(grunt) {
 				'notify:uglify'
 			],
 			options: {
-				spawn: false,
-				atBegin: true
+				spawn: false
 			}
 		},
 		jshint: {

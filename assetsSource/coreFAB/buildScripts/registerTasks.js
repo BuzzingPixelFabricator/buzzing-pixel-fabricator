@@ -8,7 +8,9 @@ module.exports = function(grunt) {
 		'initialCleanup',
 		'copy',
 		'less',
-		'uglify'
+		'uglify',
+		'notify:less',
+		'notify:uglify'
 	]);
 
 	// Register default task
