@@ -5,9 +5,10 @@
 module.exports = function(grunt) {
 	// Set grunt config for clean
 	grunt.fabInitConfig.curl = {
+		grunt: grunt,
 		downloadUpdate: {
 			src: [{
-				url: grunt.latestZipballUrl,
+				url: '<%= grunt.latestZipballUrl %>',
 				headers: {
 					'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'
 				}
