@@ -21,7 +21,9 @@
 		1300,
 		1400,
 		1500,
-		1600
+		1600,
+		1700,
+		1800
 	];
 
 	/**
@@ -56,16 +58,21 @@
 		var element = elements[name];
 		// Get the element width
 		var width = element.$el.outerWidth();
+		// Set up sizes array
+		var sizes = [];
 
 		// Loop through the class settings
 		element.sizes.forEach(function(size) {
-			// If width is equal or has exceeded size threshold, add data-element
+			// If width is equal or exceededs size threshold, add size to array
 			if (width >= size) {
-				element.$el.attr('data-width-' + size, true);
-			} else {
-				element.$el.attr('data-width-' + size, null);
+				if (sizes.indexOf(size) < 0) {
+					sizes.push(size);
+				}
 			}
 		});
+
+		// Update the data-widths attribute
+		element.$el.attr('data-widths', sizes.join(' '));
 	};
 
 	/**
@@ -105,12 +112,13 @@
 				throw 'A DOM or jQuery element, or class selector must be provided';
 			}
 
-			if (args.length < 2) {
-				throw 'At least 1 size must be provided as the second argument. Addtional size arguments may be provided after the second.';
-			}
-
 			// Prep the element
 			$el = elPrep(el);
+
+			// Make sure element has length
+			if (! $el.length) {
+				return;
+			}
 
 			// In case there is more than one element, loop through each
 			$el.each(function() {
@@ -126,18 +134,22 @@
 				}
 
 				// Add sizes to elements array
-				for (var i = 1; i < args.length; i++) {
-					// Check if the argument is an array
-					if (args[i].constructor === Array) {
-						// Loop through the array items
-						args[i].forEach(function(size) {
-							// Push the items into the sizes array
-							elements[name].sizes.push(parseInt(size));
-						});
-					// Otherwise add the argument directly to the sizes array
-					} else {
-						elements[name].sizes.push(parseInt(args[i]));
+				if (args.length > 1) {
+					for (var i = 1; i < args.length; i++) {
+						// Check if the argument is an array
+						if (args[i].constructor === Array) {
+							// Loop through the array items
+							args[i].forEach(function(size) {
+								// Push the items into the sizes array
+								elements[name].sizes.push(parseInt(size));
+							});
+						// Otherwise add the argument directly to the sizes array
+						} else {
+							elements[name].sizes.push(parseInt(args[i]));
+						}
 					}
+				} else {
+					elements[name].sizes = defaultSizes;
 				}
 
 				// Set up triggering
@@ -173,10 +185,8 @@
 					// Remove elements widthawareness trigger
 					elements[name].$el.off('widthAwarenessCheck');
 
-					// Remove all data-width attributes
-					elements[name].sizes.forEach(function(size) {
-						elements[name].$el.attr('data-width-' + size, null);
-					});
+					// Remove all data-widths attribute
+					elements[name].$el.attr('data-widths', null);
 
 					// Delete the element from storage if it's there
 					delete elements[name];
@@ -204,23 +214,23 @@
 				throw 'A selector must be provided';
 			}
 
-			if (arguments.length < 2) {
-				throw 'At least 1 size must be provided as the second argument. Addtional size arguments may be provided after the second.';
-			}
-
 			// Loop through all arguments except the first one
-			for (var i = 1; i < arguments.length; i++) {
-				// Check if the argument is an array
-				if (arguments[i].constructor === Array) {
-					// Loop through the array items
-					arguments[i].forEach(function(size) {
-						// Push the items into the sizes array
-						sizes.push(size);
-					});
-				// Otherwise add the argument directly to the sizes array
-				} else {
-					sizes.push(arguments[i]);
+			if (arguments.length > 1) {
+				for (var i = 1; i < arguments.length; i++) {
+					// Check if the argument is an array
+					if (arguments[i].constructor === Array) {
+						// Loop through the array items
+						arguments[i].forEach(function(size) {
+							// Push the items into the sizes array
+							sizes.push(size);
+						});
+					// Otherwise add the argument directly to the sizes array
+					} else {
+						sizes.push(arguments[i]);
+					}
 				}
+			} else {
+				sizes = defaultSizes;
 			}
 
 			// Add the selector
