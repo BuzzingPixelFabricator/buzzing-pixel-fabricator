@@ -111,6 +111,20 @@ module.exports = function(grunt) {
 		/**
 		 * File copying
 		 */
+		cssLib: {
+			files: grunt.fabConfig.source + '/css/lib/**',
+			tasks: [
+				'clean:cssLib',
+				'copy:cssLib'
+			]
+		},
+		jsLib: {
+			files: grunt.fabConfig.source + '/js/lib/**',
+			tasks: [
+				'clean:jsLib',
+				'copy:jsLib'
+			]
+		},
 		images: {
 			files: grunt.fabConfig.source + '/img/**',
 			tasks: [
