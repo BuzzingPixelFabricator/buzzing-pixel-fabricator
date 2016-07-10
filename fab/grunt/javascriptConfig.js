@@ -29,9 +29,10 @@ module.exports = function(grunt) {
 	// Add components
 	jsFiles[primaryJsFile].push(grunt.fabConfig.source + '/js/components/**/*.js');
 
-	// Add all other files except main
+	// Add all other files except main and anything in lib
 	jsFiles[primaryJsFile].push(grunt.fabConfig.source + '/js/**/*.js');
 	jsFiles[primaryJsFile].push('!' + grunt.fabConfig.source + '/js/main.js');
+	jsFiles[primaryJsFile].push('!' + grunt.fabConfig.source + '/js/lib/**/*');
 
 	// Check for build files in the project file
 	if (grunt.fabConfig.jsBuild.length) {
