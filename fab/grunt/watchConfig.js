@@ -3,10 +3,11 @@
 module.exports = function(grunt) {
 	var key;
 	var lessFiles = [
-		grunt.fabConfig.source + '/css/**/*'
+		grunt.fabConfig.source + '/css/**/*.css',
+		grunt.fabConfig.source + '/css/**/*.less'
 	];
 	var jsFiles = [
-		grunt.fabConfig.source + '/js/**/*'
+		grunt.fabConfig.source + '/js/**/*.js'
 	];
 
 	// Add any less build files from project file
@@ -112,14 +113,14 @@ module.exports = function(grunt) {
 		 * File copying
 		 */
 		cssLib: {
-			files: grunt.fabConfig.source + '/css/lib/**',
+			files: grunt.fabConfig.source + '/css/lib/**/*.css',
 			tasks: [
 				'clean:cssLib',
 				'copy:cssLib'
 			]
 		},
 		jsLib: {
-			files: grunt.fabConfig.source + '/js/lib/**',
+			files: grunt.fabConfig.source + '/js/lib/**/*.js',
 			tasks: [
 				'clean:jsLib',
 				'copy:jsLib'
