@@ -23,11 +23,11 @@ module.exports = function(grunt) {
 	// Add all other Fabricator JS files
 	jsFiles[primaryJsFile].push(__dirname + '/../js/**/*.js');
 
-	// Add setup file
-	jsFiles[primaryJsFile].push(grunt.fabConfig.source + '/js/setup.js');
-
 	// Add components
 	jsFiles[primaryJsFile].push(grunt.fabConfig.source + '/js/components/**/*.js');
+
+	// Add setup file
+	jsFiles[primaryJsFile].push(grunt.fabConfig.source + '/js/setup.js');
 
 	// Add all other files except main and anything in lib
 	jsFiles[primaryJsFile].push(grunt.fabConfig.source + '/js/**/*.js');
