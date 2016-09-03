@@ -1,6 +1,6 @@
 {
-	"about-this-file": "This is your grunt configuration file. All keys are required so do not remove any of them, but you may change their values",
-	"assets": "public_html/assets",
-	"source": "assetsSource",
-	"proxy": "http://fab.dev"
+	"proxy": "http://fab.dev:8888",
+	"watch": [
+		"public/index.html"
+	]
 }

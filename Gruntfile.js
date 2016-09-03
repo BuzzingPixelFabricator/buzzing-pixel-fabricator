@@ -1,68 +1,49 @@
-module.exports = function(grunt) {
-	// Get assetPath
-	var scriptPath = './' + grunt.file.readJSON(
-			'project.json'
-		).source + '/coreFab/buildScripts/';
+/* globals module */
 
+module.exports = function(grunt) {
 	// Set global items
 	grunt.fabConfig = {};
-	grunt.fabPackage = {};
 	grunt.fabInitConfig = {};
 
 	// Set up configuration
-	require(scriptPath + 'configure.js')(grunt);
+	require('./fab/grunt/configure.js')(grunt);
 
 	// Load NPM tasks
-	require(scriptPath + 'loadNpmTasks.js')(grunt);
+	require('./fab/grunt/loadNpmTasks.js')(grunt);
 
 	// Create initial clean up task
-	require(scriptPath + 'initialCleanup.js')(grunt);
+	require('./fab/grunt/initialCleanup.js')(grunt);
 
 	// Configure clean
-	require(scriptPath + 'cleanConfig.js')(grunt);
+	require('./fab/grunt/cleanConfig.js')(grunt);
 
 	// Configure copy
-	require(scriptPath + 'copyConfig.js')(grunt);
+	require('./fab/grunt/copyConfig.js')(grunt);
 
 	// Configure Less
-	require(scriptPath + '/lessConfig.js')(grunt);
+	require('./fab/grunt/lessConfig.js')(grunt);
 
 	// Configure javascript
-	require(scriptPath + 'javascriptConfig.js')(grunt);
+	require('./fab/grunt/javascriptConfig.js')(grunt);
 
 	// Configure jshint
-	require(scriptPath + 'jshintConfig.js')(grunt);
+	require('./fab/grunt/jshintConfig.js')(grunt);
 
 	// Configure jscs
-	require(scriptPath + 'jscsConfig.js')(grunt);
+	require('./fab/grunt/jscsConfig.js')(grunt);
 
 	// Configure notify
-	require(scriptPath + 'notifyConfig.js')(grunt);
+	require('./fab/grunt/notifyConfig.js')(grunt);
 
 	// Configure browser sync
-	require(scriptPath + 'browserSyncConfig.js')(grunt);
+	require('./fab/grunt/browserSyncConfig.js')(grunt);
 
 	// Configure watch
-	require(scriptPath + 'watchConfig.js')(grunt);
-
-	// Configure check
-	require(scriptPath + 'check.js')(grunt);
-
-	// Configure curl
-	require(scriptPath + 'curl.js')(grunt);
-
-	// Configure unzip
-	require(scriptPath + 'unzip.js')(grunt);
+	require('./fab/grunt/watchConfig.js')(grunt);
 
 	// Initialze grunt config
 	grunt.initConfig(grunt.fabInitConfig);
 
-	// Register module task
-	require(scriptPath + 'createModule.js')(grunt);
-
-	// Register updateFiles task
-	require(scriptPath + 'updateFiles.js')(grunt);
-
 	// Register tasks
-	require(scriptPath + 'registerTasks.js')(grunt);
+	require('./fab/grunt/registerTasks.js')(grunt);
 };

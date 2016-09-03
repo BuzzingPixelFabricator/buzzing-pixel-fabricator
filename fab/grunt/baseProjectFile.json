@@ -1,0 +1,15 @@
+{
+	"assets": "public/assets",
+	"source": "assetsSource",
+	"proxy": false,
+	"watch": [],
+	"lessCompress": true,
+	"lessBuild": [],
+	"lessFiles": {},
+	"jsBuildBefore": [],
+	"jsBuild": [],
+	"jsBuildAfter": [],
+	"jsFiles": {},
+	"jsCompress": true,
+	"sourceMaps": true
+}
