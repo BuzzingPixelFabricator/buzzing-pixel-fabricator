@@ -9,14 +9,14 @@
         "url": "https://github.com/tjdraper/buzzing-pixel-fabricator.git"
     },
     "license": "UNLICENSED",
-    "author": "BuzzingPixel",
+    "author": "BuzzingPixel, LLC",
     "contributors": [
         {
             "name": "TJ Draper",
             "url": "https://buzzingpixel.com"
         }
     ],
-    "devDependencies": {
+    "dependencies": {
         "grunt": "1.0.1",
         "grunt-browser-sync": "2.2.0",
         "grunt-contrib-clean": "1.0.0",

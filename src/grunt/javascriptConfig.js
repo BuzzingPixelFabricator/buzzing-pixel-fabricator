@@ -23,6 +23,39 @@ module.exports = function(grunt) {
     // Add all other Fabricator JS files
     jsFiles[primaryJsFile].push(__dirname + '/../js/**/*.js');
 
+    // Get any npm fab build scripts
+    grunt.file.expand("./node_modules/*").forEach(function(dir) {
+        // Get the module's package.json
+        var jsonLoc = dir + '/package.json';
+
+        // Parse the json
+        var json = grunt.file.readJSON(jsonLoc);
+
+        // Files
+        var files;
+
+        // Check if there is a fabricatorBuild property
+        if (! json.fabricatorJsBuild ||
+            grunt.fabConfig.disabledModules.indexOf(json.name) > -1
+        ) {
+            return;
+        }
+
+        // Set the files to the variable
+        files = json.fabricatorJsBuild.files;
+
+        // Iterate through files dir + '/' +
+        files.forEach(function(jsFileCandiate) {
+            // Add the directory to the path
+            jsFileCandiate = dir + '/' + jsFileCandiate;
+
+            // If the file exists, add it to the jsFiles array
+            if (grunt.file.exists(jsFileCandiate)) {
+                jsFiles[primaryJsFile].push(jsFileCandiate);
+            }
+        });
+    });
+
     // Add components
     jsFiles[primaryJsFile].push(grunt.fabConfig.source + '/js/components/**/*.js');
 
