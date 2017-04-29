@@ -8,7 +8,7 @@
         "type": "git",
         "url": "https://github.com/tjdraper/buzzing-pixel-fabricator.git"
     },
-    "license": "UNLICENSED",
+    "license": "Apache-2.0",
     "author": "BuzzingPixel, LLC",
     "contributors": [
         {
