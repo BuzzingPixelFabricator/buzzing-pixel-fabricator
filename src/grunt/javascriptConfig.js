@@ -44,14 +44,14 @@ module.exports = function(grunt) {
         // Set the files to the variable
         files = json.fabricatorJsBuild.files;
 
-        // Iterate through files dir + '/' +
-        files.forEach(function(jsFileCandiate) {
+        // Iterate through files
+        files.forEach(function(jsFileCandidate) {
             // Add the directory to the path
-            jsFileCandiate = dir + '/' + jsFileCandiate;
+            jsFileCandidate = dir + '/' + jsFileCandidate;
 
             // If the file exists, add it to the jsFiles array
-            if (grunt.file.exists(jsFileCandiate)) {
-                jsFiles[primaryJsFile].push(jsFileCandiate);
+            if (grunt.file.exists(jsFileCandidate)) {
+                jsFiles[primaryJsFile].push(jsFileCandidate);
             }
         });
     });

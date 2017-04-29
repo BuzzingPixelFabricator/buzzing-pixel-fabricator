@@ -5,10 +5,81 @@ module.exports = function(grunt) {
     var primaryCssFile = grunt.fabConfig.assets + '/css/style.min.css';
     var lessFiles = {};
 
+    var styleContents = '';
+
+    if (grunt.file.exists('./fabCache/css/mixins/')) {
+        grunt.file.delete('./fabCache/css/mixins/');
+    }
+
+    if (grunt.file.exists('./fabCache/css/reset/')) {
+        grunt.file.delete('./fabCache/css/reset/');
+    }
+
+    if (grunt.file.exists('./fabCache/css/other/')) {
+        grunt.file.delete('./fabCache/css/other/');
+    }
+
+    grunt.file.mkdir('./fabCache/css/mixins');
+    grunt.file.mkdir('./fabCache/css/reset');
+    grunt.file.mkdir('./fabCache/css/other');
+
+    // Get the contents of the style.less file
+    styleContents = grunt.file.read(__dirname + '/../css/style.less');
+
+    // Run replacements
+    styleContents = styleContents.replace(
+        /{assetsSource}/g,
+        '../../' + grunt.fabConfig.source
+    );
+
+    // Write the style.less file to the cache directory
+    grunt.file.write('./fabCache/css/style.less', styleContents);
+
     // Add primary source
-    lessFiles[primaryCssFile] = [
-        grunt.fabConfig.source + '/css/style.less'
-    ];
+    lessFiles[primaryCssFile] = ['./fabCache/css/style.less'];
+
+    // Get any npm fab build css
+    grunt.file.expand("./node_modules/*").forEach(function(dir) {
+        // Get the module's package.json
+        var jsonLoc = dir + '/package.json';
+
+        // Parse the json
+        var json = grunt.file.readJSON(jsonLoc);
+
+        // Files
+        var files;
+
+        // Set the folder type initially
+        var folder = 'other';
+
+        // Check if there is a fabricatorBuild property
+        if (! json.fabricatorCssBuild ||
+            grunt.fabConfig.disabledModules.indexOf(json.name) > -1
+        ) {
+            return;
+        }
+
+        if (json.type === 'mixins' || json.type === 'reset') {
+            folder = json.type;
+        }
+
+        // Set the files to the variable
+        files = json.fabricatorCssBuild.files;
+
+        // Iterate through files
+        files.forEach(function(cssFileCandidate) {
+            // Add the directory to the path
+            var cssFileCandidateFull = dir + '/' + cssFileCandidate;
+
+            // If the file exists, add it to the jsFiles array
+            if (grunt.file.exists(cssFileCandidateFull)) {
+                grunt.file.copy(
+                    cssFileCandidateFull,
+                    './fabCache/css/' + folder + '/' + cssFileCandidate
+                );
+            }
+        });
+    });
 
     // Check if there are any build files from project file
     if (grunt.fabConfig.lessBuild.length) {
