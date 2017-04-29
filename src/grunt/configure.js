@@ -44,5 +44,9 @@ module.exports = function(grunt) {
         }
     }
 
+    // Make sure the fabCache directory exists
+    grunt.file.mkdir('./fabCache');
+    grunt.file.write('./fabCache/.gitignore', '/css/*\n');
+
     grunt.fabConfig = config;
 };
