@@ -1,5 +1,5 @@
 {
-    "name" : "fabricator",
+    "name" : "fab.grunt-build",
     "version": "2.0.0",
     "description": "Fabricator grunt build process",
     "homepage": "https://github.com/BuzzingPixelFabricator/buzzing-pixel-fabricator",
