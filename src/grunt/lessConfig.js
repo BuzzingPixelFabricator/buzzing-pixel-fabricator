@@ -67,8 +67,10 @@ module.exports = function(grunt) {
             return;
         }
 
-        if (json.type === 'mixins' || json.type === 'reset') {
-            folder = json.type;
+        if (json.fabricatorCssBuild.type === 'mixins' ||
+            json.fabricatorCssBuild.type === 'reset'
+        ) {
+            folder = json.fabricatorCssBuild.type;
         }
 
         // Set the files to the variable
