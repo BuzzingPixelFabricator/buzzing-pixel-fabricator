@@ -2,33 +2,7 @@
 	# Project
 #------------------------------------
 
-# Custom exclusions here
-
-
-
-
-
-#------------------------------------
-	# Tools
-#------------------------------------
-
-bower_components/
-node_modules/
-out/
-.bundle
-.idea/
-.komodotools
-.project
-.settings/
-.tern-project
-.tmproj
-*.esproj
-*.komodoproject
-*.sublime-*
-browserstack.js
-codekit-config.json
-mixture.json
-prepros.json
+# Custom project exclusions
 
 
 
@@ -38,9 +12,52 @@ prepros.json
 	# System
 #------------------------------------
 
-.cache
-.DS_Store
-.tmp
+public/hot
+public/storage
+storage/*.key
+
+localStorage/*
+!localStorage/.gitkeep
+!localStorage/dbBackups
+localStorage/dbBackups/*
+!localStorage/dbBackups/.gitkeep
+
+vagrantConfig.yaml
+
+
+
+
+
+#------------------------------------
+	# Tools
+#------------------------------------
+
+*.esproj
+*.komodoproject
+*.sublime-*
+*.vagrant
+.bundle
+.env
+.idea
+.komodotools
+.project
+.settings
+.tern-project
+.tmproj
+Homestead.yaml
+Homestead.json
+node_modules
+out
+vendor
+
+
+
+
+
+#------------------------------------
+	# Platforms
+#------------------------------------
+
 *.diff
 *.err
 *.log
@@ -49,11 +66,11 @@ prepros.json
 *.swo
 *.swp
 *.vi
+.cache
+.DS_Store
+.tmp
 error_log
 Thumbs.db
-Homestead.yaml
-vendor/*
-*.vagrant
 
 
 
