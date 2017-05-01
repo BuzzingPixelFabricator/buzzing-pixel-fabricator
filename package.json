@@ -2,11 +2,11 @@
     "name" : "fabricator",
     "version": "1.0.0",
     "description": "Fabricator grunt build process",
-    "homepage": "https://github.com/tjdraper/buzzing-pixel-fabricator",
-    "bugs": "https://github.com/tjdraper/buzzing-pixel-fabricator/issues",
+    "homepage": "https://github.com/BuzzingPixelFabricator/buzzing-pixel-fabricator",
+    "bugs": "https://github.com/BuzzingPixelFabricator/buzzing-pixel-fabricator/issues",
     "repository": {
         "type": "git",
-        "url": "https://github.com/tjdraper/buzzing-pixel-fabricator.git"
+        "url": "https://github.com/BuzzingPixelFabricator/buzzing-pixel-fabricator.git"
     },
     "license": "Apache-2.0",
     "author": "BuzzingPixel, LLC",
