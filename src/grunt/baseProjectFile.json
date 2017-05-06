@@ -12,5 +12,8 @@
     "jsFiles": {},
     "jsCompress": true,
     "sourceMaps": true,
-    "disabledModules": []
+    "disabledModules": [],
+    "critical": {
+        "destination": "public/criticalCss"
+    }
 }
