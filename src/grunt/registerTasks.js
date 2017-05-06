@@ -9,6 +9,12 @@
 /* globals module */
 
 module.exports = function(grunt) {
+    // Register critical css task
+    grunt.registerTask('criticalCss', [
+        'criticalCleanup',
+        'critical'
+    ]);
+
     // Register grunt compile task
     grunt.registerTask('compile', [
         'initialCleanup',
