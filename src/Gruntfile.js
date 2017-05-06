@@ -6,7 +6,7 @@
     # http://www.apache.org/licenses/LICENSE-2.0
 \*----------------------------------------------------------------------------*/
 
-/* globals module */
+/* globals module, __dirname */
 
 module.exports = function(grunt) {
     // Set global items
@@ -48,6 +48,12 @@ module.exports = function(grunt) {
 
     // Configure watch
     require(__dirname + '/grunt/watchConfig.js')(grunt);
+
+    // Configure critical cleanup
+    require(__dirname + '/grunt/criticalCleanup.js')(grunt);
+
+    // Configure critical CSS
+    require(__dirname + '/grunt/criticalConfig.js')(grunt);
 
     // Initialze grunt config
     grunt.initConfig(grunt.fabInitConfig);

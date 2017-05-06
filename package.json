@@ -1,6 +1,6 @@
 {
     "name" : "fab.grunt-build",
-    "version": "2.0.0",
+    "version": "2.1.0",
     "description": "Fabricator grunt build process",
     "homepage": "https://github.com/BuzzingPixelFabricator/buzzing-pixel-fabricator",
     "bugs": "https://github.com/BuzzingPixelFabricator/buzzing-pixel-fabricator/issues",
@@ -17,6 +17,7 @@
         }
     ],
     "dependencies": {
+        "deasync": "0.1.9",
         "grunt": "1.0.1",
         "grunt-browser-sync": "2.2.0",
         "grunt-contrib-clean": "1.0.0",
@@ -25,8 +26,10 @@
         "grunt-contrib-less": "1.4.1",
         "grunt-contrib-uglify": "2.3.0",
         "grunt-contrib-watch": "1.0.0",
+        "grunt-critical": "0.2.2",
         "grunt-jscs": "3.0.1",
         "grunt-notify": "0.4.5",
-        "less-plugin-glob": "2.0.0"
+        "less-plugin-glob": "2.0.0",
+        "request": "2.81.0"
     }
 }
