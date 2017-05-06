@@ -7,7 +7,7 @@ module.exports = function(grunt) {
     var destination = grunt.fabConfig.critical.destination;
     var protocol = grunt.option('https') === true ? 'https://' : 'http://';
     var baseUrl = protocol + grunt.option('baseUrl') + '/';
-    var jsonUrl = grunt.option('jsonUri');
+    var jsonUri = grunt.option('jsonUri');
     var criticalConfig = {};
     var requestUrl = deasync(function(url, cb) {
         var userAgent = {
@@ -45,7 +45,7 @@ module.exports = function(grunt) {
             dest: destination + sep + optionUri + '/style.min.css'
         };
     } else {
-        json = requestUrl(baseUrl + jsonUrl);
+        json = requestUrl(baseUrl + jsonUri);
 
         for (var i = 0; i < json.length; i++) {
             if (json[i]) {
@@ -63,7 +63,7 @@ module.exports = function(grunt) {
                     height: 1500,
                     minify: true
                 },
-                src: json[i],
+                src: baseUrl + json[i],
                 dest: destination + sep + json[i] + '/style.min.css'
             };
         }
