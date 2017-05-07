@@ -10,9 +10,10 @@
 
 module.exports = function(grunt) {
     var key;
-    var lessFiles = [
+    var cssFiles = [
         grunt.fabConfig.source + '/css/**/*.css',
-        grunt.fabConfig.source + '/css/**/*.less'
+        grunt.fabConfig.source + '/css/**/*.less',
+        grunt.fabConfig.source + '/css/**/*.scss'
     ];
     var jsFiles = [
         grunt.fabConfig.source + '/js/**/*.js'
@@ -23,7 +24,16 @@ module.exports = function(grunt) {
         // Loop through the build files array
         grunt.fabConfig.lessBuild.forEach(function(i) {
             // Push the file into the array to be watched
-            lessFiles.push(i);
+            cssFiles.push(i);
+        });
+    }
+
+    // Add any sass build files from project file
+    if (grunt.fabConfig.sassBuild.length) {
+        // Loop through the build files array
+        grunt.fabConfig.sassBuild.forEach(function(i) {
+            // Push the file into the array to be watched
+            cssFiles.push(i);
         });
     }
 
@@ -32,7 +42,16 @@ module.exports = function(grunt) {
         // Loop through the individual files
         for (key in grunt.fabConfig.lessFiles) {
             // Add individual Less file to the array to be watched
-            lessFiles.push(grunt.fabConfig.lessFiles[key]);
+            cssFiles.push(grunt.fabConfig.lessFiles[key]);
+        }
+    }
+
+    // Add individual sass files
+    if (Object.keys(grunt.fabConfig.sassFiles).length) {
+        // Loop through the individual files
+        for (key in grunt.fabConfig.sassFiles) {
+            // Add individual Less file to the array to be watched
+            cssFiles.push(grunt.fabConfig.sassFiles[key]);
         }
     }
 
@@ -68,16 +87,16 @@ module.exports = function(grunt) {
         // Loop through the files
         for (key in grunt.fabConfig.jsFiles) {
             // Add individual Less file to the array to be watched
-            lessFiles.push(grunt.fabConfig.jsFiles[key]);
+            cssFiles.push(grunt.fabConfig.jsFiles[key]);
         }
     }
 
     // Set grunt config for watch
     grunt.fabInitConfig.watch = {
         styles: {
-            files: lessFiles,
+            files: cssFiles,
             tasks: [
-                'less',
+                grunt.fabConfig.preprocessor,
                 'notify:less'
             ],
             options: {

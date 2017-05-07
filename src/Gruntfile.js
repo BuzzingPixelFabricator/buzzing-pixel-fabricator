@@ -29,7 +29,7 @@ module.exports = function(grunt) {
     require(__dirname + '/grunt/copyConfig.js')(grunt);
 
     // Configure Less
-    require(__dirname + '/grunt/lessConfig.js')(grunt);
+    require(__dirname + '/grunt/' + grunt.fabConfig.preprocessor + 'Config.js')(grunt);
 
     // Configure javascript
     require(__dirname + '/grunt/javascriptConfig.js')(grunt);
