@@ -44,7 +44,7 @@ module.exports = function(grunt) {
             src: baseUrl + optionUri,
             dest: destination + sep + optionUri + '/style.min.css'
         };
-    } else {
+    } else if (grunt.option('baseUrl') && jsonUri) {
         json = requestUrl(baseUrl + jsonUri);
 
         for (var i = 0; i < json.length; i++) {

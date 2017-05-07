@@ -13,7 +13,7 @@ module.exports = function(grunt) {
     var primaryCssFile = grunt.fabConfig.assets + '/css/style.min.css';
     var lessFiles = {};
 
-    var styleContents = '';
+    var styleContents;
 
     if (grunt.file.exists('./fabCache/css/mixins/')) {
         grunt.file.delete('./fabCache/css/mixins/');

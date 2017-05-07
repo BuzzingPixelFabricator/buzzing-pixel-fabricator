@@ -19,7 +19,7 @@ module.exports = function(grunt) {
     grunt.registerTask('compile', [
         'initialCleanup',
         'copy',
-        'less',
+        grunt.fabConfig.preprocessor,
         'uglify',
         'notify:less',
         'notify:uglify'
