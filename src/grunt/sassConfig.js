@@ -84,7 +84,7 @@ module.exports = function(grunt) {
     }
 
     if (npmOther.length) {
-        npmReset.forEach(function(i) {
+        npmOther.forEach(function(i) {
             sassFiles.push(i);
         });
     }
@@ -173,6 +173,4 @@ module.exports = function(grunt) {
             files: otherSassFiles
         }
     };
-
-    console.log(grunt.fabInitConfig.sass);
 };
