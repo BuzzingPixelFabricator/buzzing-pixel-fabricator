@@ -18,6 +18,11 @@ module.exports = function(grunt) {
     var npmOther = [];
     var styleContents = '';
 
+    // Check for user variables
+    grunt.file.expand(grunt.fabConfig.source + '/css/vars/**/*.scss').forEach(function(file) {
+        sassFiles.push(file);
+    });
+
     // Get any npm fab build css
     grunt.file.expand("./node_modules/*").forEach(function(dir) {
         // Get the module's package.json
@@ -83,11 +88,6 @@ module.exports = function(grunt) {
             sassFiles.push(i);
         });
     }
-
-    // Check for user variables
-    grunt.file.expand(grunt.fabConfig.source + '/css/vars/**/*.scss').forEach(function(file) {
-        sassFiles.push(file);
-    });
 
     // Check for user mixins
     grunt.file.expand(grunt.fabConfig.source + '/css/mixins/**/*.scss').forEach(function(file) {
