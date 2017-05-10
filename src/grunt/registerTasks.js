@@ -6,9 +6,15 @@
     # http://www.apache.org/licenses/LICENSE-2.0
 \*----------------------------------------------------------------------------*/
 
-/* globals module */
+/* globals module, __dirname */
 
 module.exports = function(grunt) {
+    // Register task to configure sass
+    grunt.registerTask('configureSass', function() {
+        // Configure Less
+        require(__dirname + '/sassConfig.js')(grunt);
+    });
+
     // Register critical css task
     grunt.registerTask('criticalCss', [
         'criticalCleanup',
