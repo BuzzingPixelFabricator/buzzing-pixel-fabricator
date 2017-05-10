@@ -18,6 +18,7 @@ module.exports = function(grunt) {
     var jsFiles = [
         grunt.fabConfig.source + '/js/**/*.js'
     ];
+    var styleTasks = {};
 
     // Add any less build files from project file
     if (grunt.fabConfig.lessBuild.length) {
@@ -91,14 +92,24 @@ module.exports = function(grunt) {
         }
     }
 
+    if (grunt.fabConfig.preprocessor === 'sass') {
+        styleTasks = [
+            'configureSass',
+            'sass',
+            'notify:less'
+        ];
+    } else {
+        styleTasks = [
+            'less',
+            'notify:less'
+        ];
+    }
+
     // Set grunt config for watch
     grunt.fabInitConfig.watch = {
         styles: {
             files: cssFiles,
-            tasks: [
-                grunt.fabConfig.preprocessor,
-                'notify:less'
-            ],
+            tasks: styleTasks,
             options: {
                 spawn: false
             }
