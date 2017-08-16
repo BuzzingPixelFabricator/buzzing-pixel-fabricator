@@ -15,6 +15,7 @@
     "jsBuildAfter": [],
     "jsFiles": {},
     "jsCompress": true,
+    "jsNamespace": "FAB",
     "sourceMaps": true,
     "disabledModules": [],
     "critical": {

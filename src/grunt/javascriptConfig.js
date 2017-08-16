@@ -12,6 +12,7 @@ module.exports = function(grunt) {
     // Set up primary JS file
     var primaryJsFile = grunt.fabConfig.assets + '/js/script.min.js';
     var jsFiles = {};
+    var fabJsContent;
 
     // Setup primary source
     jsFiles[primaryJsFile] = [];
@@ -25,8 +26,16 @@ module.exports = function(grunt) {
         });
     }
 
+    // Build fabJsContent
+    fabJsContent = '// Make sure FAB is defined\n';
+    fabJsContent += "window.FABNAMESPACE = '" + grunt.fabConfig.jsNamespace + "';\n";
+    fabJsContent += 'window[window.FABNAMESPACE] = window.window[window.FABNAMESPACE] || {};\n';
+
+    // Write the primary fab script
+    grunt.file.write('./fabCache/js/fab.js', fabJsContent);
+
     // Add primary fab setup files
-    jsFiles[primaryJsFile].push(__dirname + '/../js/fab.js');
+    jsFiles[primaryJsFile].push('./fabCache/js/fab.js');
 
     // Add all other Fabricator JS files
     jsFiles[primaryJsFile].push(__dirname + '/../js/**/*.js');
